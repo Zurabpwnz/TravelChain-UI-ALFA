@@ -119,7 +119,7 @@ class AccountDepositWithdraw extends React.Component {
         let { olService, btService, rudexService } = this.state;
 
         serList.push({
-            name: "Openledger (OPEN.X)",
+            name: "DACom Core",
             template: (
                 <div className="content-block">
                         {/* <div className="float-right">
@@ -155,68 +155,7 @@ class AccountDepositWithdraw extends React.Component {
             )
         });
 
-        serList.push({
-            name: "RuDEX (RUDEX.X)",
-            template: (
-                <div className="content-block">
-                    <div className="service-selector">
-                        <ul className="button-group segmented no-margin">
-                            <li onClick={this.toggleRuDEXService.bind(this, "gateway")}
-                                className={rudexService === "gateway" ? "is-active" : ""}><a><Translate
-                                content="gateway.gateway"/></a></li>
-                            <li onClick={this.toggleRuDEXService.bind(this, "fiat")}
-                                className={rudexService === "fiat" ? "is-active" : ""}><a>Fiat</a></li>
-                        </ul>
-                    </div>
-
-                    {rudexService === "gateway" && rudexGatewayCoins.length ?
-                        <RuDexGateway account={account} coins={rudexGatewayCoins}/> : null}
-
-                    {rudexService === "fiat" ?
-                        <div>
-                            <Translate content="gateway.rudex.coming_soon" />
-                        </div> : null}
-                </div>
-            )
-        });
-
-        serList.push({
-            name: "BlockTrades",
-            template: (
-                <div>
-                        <div className="content-block">
-                            {/* <div className="float-right"><a href="https://blocktrades.us" target="__blank" rel="noopener noreferrer"><Translate content="gateway.website" /></a></div> */}
-
-                            <div className="service-selector">
-                                <ul className="button-group segmented no-margin">
-                                    <li onClick={this.toggleBTService.bind(this, "bridge")} className={btService === "bridge" ? "is-active" : ""}><a><Translate content="gateway.bridge" /></a></li>
-                                </ul>
-                            </div>
-
-                            <BlockTradesBridgeDepositRequest
-                                gateway="blocktrades"
-                                issuer_account="blocktrades"
-                                account={account}
-                                initial_deposit_input_coin_type="btc"
-                                initial_deposit_output_coin_type="bts"
-                                initial_deposit_estimated_input_amount="1.0"
-                                initial_withdraw_input_coin_type="bts"
-                                initial_withdraw_output_coin_type="btc"
-                                initial_withdraw_estimated_input_amount="100000"
-                                initial_conversion_input_coin_type="bts"
-                                initial_conversion_output_coin_type="bitbtc"
-                                initial_conversion_estimated_input_amount="1000"
-                            />
-                        </div>
-                        <div className="content-block">
-                        </div>
-                    </div>)
-        });
-
-        serList.push({
-            name: "BitKapital",
-            template: (<BitKapital viewSettings={this.props.viewSettings} account={account}/>)
-        });
+       
 
         return serList;
     }

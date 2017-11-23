@@ -21,7 +21,7 @@ import notify from "actions/NotificationActions";
 import IntlActions from "actions/IntlActions";
 import AccountImage from "../Account/AccountImage";
 
-var logo = require("assets/logo-ico-blue.png");
+var logo = require("assets/TravelChain.png");
 
 const FlagImage = ({flag, width = 20, height = 20}) => {
     return <img height={height} width={width} src={`${__BASE_URL__}language-dropdown/${flag.toUpperCase()}.png`} />;
@@ -248,29 +248,11 @@ class Header extends React.Component {
 
         let settingsDropdown = <ActionSheet>
             <ActionSheet.Button title="">
-                <a style={{padding: "1rem", border: "none"}} className="button">
+                <a style={{padding: "1rem", border: "none"}} onClick={this._onNavigate.bind(this, "/settings")} className="button">
                     <Icon className="icon-14px" name="cog"/>
                 </a>
             </ActionSheet.Button>
-            <ActionSheet.Content>
-                <ul className="no-first-element-top-border">
-                    <li>
-                        <a href onClick={this._onNavigate.bind(this, "/settings")}>
-                            <span><Translate content="header.settings" /></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href onClick={this._onNavigate.bind(this, "/explorer")}>
-                            <span><Translate content="header.explorer" /></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href onClick={this._onNavigate.bind(this, "/help/introduction/bitshares")}>
-                            <span><Translate content="header.help" /></span>
-                        </a>
-                    </li>
-                </ul>
-            </ActionSheet.Content>
+            
         </ActionSheet>;
 
         const flagDropdown = <ActionSheet>
@@ -322,10 +304,11 @@ class Header extends React.Component {
                 <div className="grid-block show-for-medium">
                     <ul className="menu-bar">
                         <li>{dashboard}</li>
+                        <li><a className={cnames({active: active.indexOf("explorer") !== -1})} onClick={this._onNavigate.bind(this, "/explorer")}><Translate component="span" content="header.explorer" /></a></li>
+                        
                         {!currentAccount ? null : <li><Link to={`/account/${currentAccount}/overview`} className={cnames({active: active.indexOf("account/") !== -1})}><Translate content="header.account" /></Link></li>}
                         {currentAccount || myAccounts.length ? <li><a className={cnames({active: active.indexOf("transfer") !== -1})} onClick={this._onNavigate.bind(this, "/transfer")}><Translate component="span" content="header.payments" /></a></li> : null}
-                        {!(currentAccount || myAccounts.length) ? <li><a className={cnames({active: active.indexOf("explorer") !== -1})} onClick={this._onNavigate.bind(this, "/explorer")}><Translate component="span" content="header.explorer" /></a></li> : null}
-                        <li>{tradeLink}</li>
+                        
                         {enableDepositWithdraw && currentAccount && myAccounts.indexOf(currentAccount) !== -1 ? <li><Link to={"/deposit-withdraw/"} activeClassName="active"><Translate content="account.deposit_withdraw"/></Link></li> : null}
                     </ul>
                 </div>
