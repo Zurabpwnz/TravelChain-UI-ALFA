@@ -256,26 +256,6 @@ class Header extends React.Component {
         </ActionSheet>;
 
         const flagDropdown = <ActionSheet>
-            <ActionSheet.Button title="">
-                <a style={{padding: "1rem", border: "none"}} className="button">
-                    <FlagImage flag={this.props.currentLocale} />
-                </a>
-            </ActionSheet.Button>
-            <ActionSheet.Content>
-                <ul className="no-first-element-top-border">
-                    {this.props.locales.map(locale => {
-                        return (
-                            <li key={locale}>
-                                <a href onClick={(e) => {e.preventDefault(); IntlActions.switchLocale(locale);}}>
-                                    <div className="table-cell"><FlagImage flag={locale} /></div>
-                                    <div className="table-cell" style={{paddingLeft: 10}}><Translate content={"languages." + locale} /></div>
-
-                                </a>
-                            </li>
-                        );
-                    })}
-                </ul>
-            </ActionSheet.Content>
         </ActionSheet>;
 
         const enableDepositWithdraw = Apis.instance().chain_id.substr(0, 8) === "4018d784";
@@ -321,18 +301,13 @@ class Header extends React.Component {
                             {settingsDropdown}
                         </div>}
 
-                        {myAccountCount !== 0 ? null :<div className="grp-menu-item overflow-visible" >
-                            {flagDropdown}
-                        </div>}
+                        
 
                         <div className="grp-menu-item overflow-visible account-drop-down">
                             {accountsDropDown}
                         </div>
 
-                        {!myAccountCount ? null : <div className="grp-menu-item overflow-visible account-drop-down">
-                            {flagDropdown}
-                        </div>}
-
+                       
                         {!myAccountCount ? null : <div className="grp-menu-item overflow-visible" >
                             {settingsDropdown}
                         </div>}

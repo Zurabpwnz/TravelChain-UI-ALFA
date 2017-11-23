@@ -32,9 +32,9 @@ export default class LoginSelector extends React.Component {
                     <div className="grid-content shrink text-center account-creation">
                         <div><img src={logo}/></div>
                         <Translate content="account.intro_text_title" component="h4"/>
-                        <Translate unsafe content="account.intro_text_1" component="p" />
 
-                        {!!childCount ? null :
+                        <div style={{padding: 20 + 'px'}}><Translate unsafe content="account.intro_text_1" component="p" /></div>
+                         {!!childCount ? null :
                         <div className="button-group">
                             <label style={{textAlign: "left"}}><Translate content="account.new_user" /><br/>
                                 <Link to="/create-account/password">
