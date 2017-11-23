@@ -1213,25 +1213,6 @@ class Exchange extends React.Component {
                                     theme={this.props.settings.get("themes")}
                                     centerRef={this.refs.center}
                                 />
-                                {marketLimitOrders.size > 0 && base && quote ? (
-                                <MyOpenOrders
-                                    smallScreen={this.props.smallScreen}
-                                    className={cnames(
-                                        {disabled: isNullAccount},
-                                        !smallScreen && !leftOrderBook ? "medium-6 xlarge-4" : "",
-                                        `small-12 medium-6 no-padding align-spaced ps-container middle-content order-${buySellTop ? 6 : 6}`
-                                    )}
-                                    key="open_orders"
-                                    orders={marketLimitOrders}
-                                    currentAccount={currentAccount}
-                                    base={base}
-                                    quote={quote}
-                                    baseSymbol={baseSymbol}
-                                    quoteSymbol={quoteSymbol}
-                                    onCancel={this._cancelLimitOrder.bind(this)}
-                                    flipMyOrders={this.props.viewSettings.get("flipMyOrders")}
-                                    feedPrice={this.props.feedPrice}
-                                />) : null}
                             </div>)}
 
                             <div className="grid-block no-overflow wrap shrink" >
@@ -1259,7 +1240,61 @@ class Exchange extends React.Component {
 
                                 {!leftOrderBook ? orderBook : null}
 
-                                {this.props.miniDepthChart ? <DepthHighChart
+                                <ConfirmOrderModal
+                                    type="buy"
+                                    ref="buy"
+                                    onForce={this._forceBuy.bind(this, "buy", buyFeeAsset, baseBalance, coreBalance)}
+                                    diff={buyDiff}
+                                    hasOrders={combinedAsks.length > 0}
+                                />
+
+                                <ConfirmOrderModal
+                                    type="sell"
+                                    ref="sell"
+                                    onForce={this._forceSell.bind(this, "sell", sellFeeAsset, quoteBalance, coreBalance)}
+                                    diff={sellDiff}
+                                    hasOrders={combinedBids.length > 0}
+                                />
+
+                                {marketLimitOrders.size > 0 && base && quote ? (
+                                <MyOpenOrders
+                                    smallScreen={this.props.smallScreen}
+                                    className={cnames(
+                                        {disabled: isNullAccount},
+                                        !smallScreen && !leftOrderBook ? "medium-6 xlarge-4" : "",
+                                        `small-12 medium-6 no-padding align-spaced ps-container middle-content order-${buySellTop ? 6 : 6}`
+                                    )}
+                                    key="open_orders"
+                                    orders={marketLimitOrders}
+                                    currentAccount={currentAccount}
+                                    base={base}
+                                    quote={quote}
+                                    baseSymbol={baseSymbol}
+                                    quoteSymbol={quoteSymbol}
+                                    onCancel={this._cancelLimitOrder.bind(this)}
+                                    flipMyOrders={this.props.viewSettings.get("flipMyOrders")}
+                                    feedPrice={this.props.feedPrice}
+                                />) : null}
+                            </div>
+
+
+                            {/* Settle Orders */}
+
+                            {(base.get("id") === "1.3.0" || quote.get("id") === "1.3.0") ? (
+                            <OpenSettleOrders
+                                key="settle_orders"
+                                className={cnames(!smallScreen && !leftOrderBook ? "medium-6 xlarge-4 order-12" : "",
+                                    `small-12 medium-6 no-padding align-spaced ps-container middle-content order-12`
+                                )}
+                                orders={marketSettleOrders}
+                                base={base}
+                                quote={quote}
+                                baseSymbol={baseSymbol}
+                                quoteSymbol={quoteSymbol}
+                            />) : null}
+                         <div style={{padding: !this.props.miniDepthChart ? 0 : "0 0 40px 0"}} className="grid-block no-margin vertical shrink">
+                            <div onClick={this._toggleMiniChart.bind(this)} className="exchange-content-header clickable" style={{textAlign: "left", paddingRight: 10}}>{this.props.miniDepthChart ? <span>&#9660;</span> : <span>&#9650;</span>}</div>
+                            {this.props.miniDepthChart ? <DepthHighChart
                                     marketReady={marketReady}
                                     orders={marketLimitOrders}
                                     showCallLimit={showCallLimit}
@@ -1284,43 +1319,7 @@ class Exchange extends React.Component {
                                     noText={true}
                                     theme={this.props.settings.get("themes")}
                                 /> : null}
-
-
-                                <ConfirmOrderModal
-                                    type="buy"
-                                    ref="buy"
-                                    onForce={this._forceBuy.bind(this, "buy", buyFeeAsset, baseBalance, coreBalance)}
-                                    diff={buyDiff}
-                                    hasOrders={combinedAsks.length > 0}
-                                />
-
-                                <ConfirmOrderModal
-                                    type="sell"
-                                    ref="sell"
-                                    onForce={this._forceSell.bind(this, "sell", sellFeeAsset, quoteBalance, coreBalance)}
-                                    diff={sellDiff}
-                                    hasOrders={combinedBids.length > 0}
-                                />
-
-                                
-                            </div>
-
-
-                            {/* Settle Orders */}
-
-                            {(base.get("id") === "1.3.0" || quote.get("id") === "1.3.0") ? (
-                            <OpenSettleOrders
-                                key="settle_orders"
-                                className={cnames(!smallScreen && !leftOrderBook ? "medium-6 xlarge-4 order-12" : "",
-                                    `small-12 medium-6 no-padding align-spaced ps-container middle-content order-12`
-                                )}
-                                orders={marketSettleOrders}
-                                base={base}
-                                quote={quote}
-                                baseSymbol={baseSymbol}
-                                quoteSymbol={quoteSymbol}
-                            />) : null}
-
+                        </div>
 
                         </div>{ /* end CenterContent */}
 
@@ -1329,6 +1328,7 @@ class Exchange extends React.Component {
 
                     {/* Right Column - Market History */}
                     
+
 
                     {!isNullAccount && quoteIsBitAsset  ?
                         <BorrowModal
