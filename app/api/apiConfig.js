@@ -17,13 +17,12 @@ export const rudexAPIs = {
 };
 
 export const settingsAPIs = {
-    DEFAULT_WS_NODE: "wss://fake.automatic-selection.com",
+    DEFAULT_WS_NODE: "wss://testnet.travelchain.io/ws",
     WS_NODE_LIST: [
         {url: "wss://fake.automatic-selection.com", location: {translate: "settings.api_closest"}},
-        {url: "wss://testnet.travelchain.io/ws", location: "unknown"},
-       
+        {url: "wss://testnet.travelchain.io/ws", location: "USSR"},
     ],
-    DEFAULT_FAUCET: "https://testnet.travelchain.io/faucet",
-    TESTNET_FAUCET: "https://testnet.travelchain.io/faucet",
+    DEFAULT_FAUCET: "https://faucet.testnet.bitshares.eu",
+    TESTNET_FAUCET: "https://faucet.testnet.bitshares.eu",
     RPC_URL: "https://openledger.info/api/"
 };
