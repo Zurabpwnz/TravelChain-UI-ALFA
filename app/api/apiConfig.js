@@ -17,7 +17,7 @@ export const rudexAPIs = {
 };
 
 export const settingsAPIs = {
-    DEFAULT_WS_NODE: "wss://testnet.travelchain.io/ws",
+    DEFAULT_WS_NODE: "wss://127.0.0.1/ws",
     WS_NODE_LIST: [
         {url: "wss://fake.automatic-selection.com", location: {translate: "settings.api_closest"}},
         {url: "wss://testnet.travelchain.io/ws", location: "USSR"},
