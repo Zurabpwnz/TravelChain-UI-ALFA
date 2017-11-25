@@ -11,6 +11,14 @@ import WalletActions from "actions/WalletActions"
 import alt from 'alt-instance'
 import iDB from 'idb-instance'
 
+
+// Patch for TTT node
+ChainConfig.networks.DACom = {
+  core_asset: 'FLO',
+  address_prefix: 'FLO',
+  chain_id: '526880c720c677ef7b54f964fe68999d1e582a33c8636b0f3b4687d47ae2f67f'
+}
+
 const utils = {
 
     PrivateKey, PublicKey, Aes, key,
