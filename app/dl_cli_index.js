@@ -16,7 +16,7 @@ import iDB from 'idb-instance'
 ChainConfig.networks.DACom = {
   core_asset: 'FLO',
   address_prefix: 'FLO',
-  chain_id: '526880c720c677ef7b54f964fe68999d1e582a33c8636b0f3b4687d47ae2f67f'
+  chain_id: '5e46c21ca3f9c651a19915ba53b5d25232210738845f447ca7cba38b1adf5de0'
 }
 
 const utils = {
