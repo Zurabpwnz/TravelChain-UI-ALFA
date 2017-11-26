@@ -16,6 +16,14 @@ import {ChainStore, PrivateKey, key, Aes} from "bitsharesjs/es";
 import {Apis, ChainConfig} from "bitsharesjs-ws";
 import AddressIndex from "stores/AddressIndex";
 
+// Patch for TTT node
+ChainConfig.networks.TTT = {
+  core_asset: 'TT',
+  address_prefix: 'TTT',
+  chain_id: '5e46c21ca3f9c651a19915ba53b5d25232210738845f447ca7cba38b1adf5de0'
+}
+
+
 let aes_private = null;
 let _passwordKey = null;
 // let transaction;

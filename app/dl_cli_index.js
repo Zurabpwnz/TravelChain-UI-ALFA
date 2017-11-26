@@ -12,13 +12,6 @@ import alt from 'alt-instance'
 import iDB from 'idb-instance'
 
 
-// Patch for TTT node
-ChainConfig.networks.DACom = {
-  core_asset: 'TT',
-  address_prefix: 'TTT',
-  chain_id: '5e46c21ca3f9c651a19915ba53b5d25232210738845f447ca7cba38b1adf5de0'
-}
-
 const utils = {
 
     PrivateKey, PublicKey, Aes, key,
