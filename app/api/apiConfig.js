@@ -19,8 +19,6 @@ export const rudexAPIs = {
 export const settingsAPIs = {
     DEFAULT_WS_NODE: "wss://testnet.travelchain.io/ws",
     WS_NODE_LIST: [
-        {url: "wss://travelchain.io/ws", location: "Main"},
-        {url: "wss://127.0.0.1:8090", location: "Locally hosted"},
         {url: "wss://testnet.travelchain.io/ws", location: "Public Testnet Server"},
     ],
     DEFAULT_FAUCET: "https://testnet.travelchain.io/faucet",
