@@ -87,6 +87,11 @@ class AccountNameInput extends React.Component {
         return error;
     }
 
+    is_cheap_name(account_name) {
+        return (/[0-9-.]/.test(account_name) || !/[aeiouy]/.test(account_name));
+    }
+
+
     validateAccountName(value) {
         this.state.error = value === "" ?
             "Please enter valid account name" :
@@ -94,10 +99,10 @@ class AccountNameInput extends React.Component {
 
         this.state.warning = null
         if(this.props.cheapNameOnly) {
-            if( ! this.state.error && ! ChainValidation.is_cheap_name( value ))
+            if( ! this.state.error && ! this.is_cheap_name( value ))
                 this.state.error = counterpart.translate("account.name_input.premium_name_faucet");
         } else {
-            if( ! this.state.error && ! ChainValidation.is_cheap_name( value ))
+            if( ! this.state.error && ! this.is_cheap_name( value ))
                 this.state.warning = counterpart.translate("account.name_input.premium_name_warning");
         }
         this.setState({value: value, error: this.state.error, warning: this.state.warning});
