@@ -139,7 +139,7 @@ class BlockTradesGateway extends React.Component {
                         <div style={{paddingBottom: 15}}>
                             <ul className="button-group segmented no-margin">
                             <li className={action === "deposit" ? "is-active" : ""}><a onClick={this.changeAction.bind(this, "deposit")}><Translate content="gateway.deposit" /></a></li>
-                            <li className={action === "withdraw" ? "is-active" : ""}><a onClick={this.changeAction.bind(this, "withdraw")}><Translate content="gateway.withdraw" /></a></li>
+                            <li className={action === "withdraw" ? "is-active" : ""}><a style={{cursor:'no-drop'}}><Translate content="gateway.withdraw" /></a></li>
                             </ul>
                         </div>
                     </div>
@@ -167,8 +167,8 @@ class BlockTradesGateway extends React.Component {
                             isAvailable={coin.isAvailable}
                             action={this.state.action}
                         />
-                        <label className="left-label">Support</label>
-                        <div><Translate content="gateway.support_block" /><br /><br /><a href={(issuer.support.indexOf("@") === -1 ? "" : "mailto:") + issuer.support}>{issuer.support}</a></div>
+                       {/* <label className="left-label">Support</label>
+                        <div><Translate content="gateway.support_block" /><br /><br /><a href={(issuer.support.indexOf("@") === -1 ? "" : "mailto:") + issuer.support}>{issuer.support}</a></div> */}
                     </div>
 
                     {coin && coin.symbol ?

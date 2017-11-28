@@ -127,8 +127,8 @@ class AccountDepositWithdraw extends React.Component {
                         </div> */}
                         <div className="service-selector">
                             <ul className="button-group segmented no-margin">
-                                <li onClick={this.toggleOLService.bind(this, "gateway")} className={olService === "gateway" ? "is-active" : ""}><a><Translate content="gateway.gateway" /></a></li>
-                                <li onClick={this.toggleOLService.bind(this, "fiat")} className={olService === "fiat" ? "is-active" : ""}><a>Fiat</a></li>
+                           {/*     <li onClick={this.toggleOLService.bind(this, "gateway")} className={olService === "gateway" ? "is-active" : ""}><a><Translate content="gateway.gateway" /></a></li> 
+                                <li onClick={this.toggleOLService.bind(this, "fiat")} className={olService === "fiat" ? "is-active" : ""}><a>Fiat</a></li> */}
                             </ul>
                         </div>
 
@@ -200,44 +200,14 @@ class AccountDepositWithdraw extends React.Component {
             <div className={this.props.contained ? "grid-content" : "grid-container"}>
                 <div className={this.props.contained ? "" : "grid-content"} style={{paddingTop: "2rem"}}>
 
-                    <Translate content="gateway.title" component="h2" />
                     <div className="grid-block vertical medium-horizontal no-margin no-padding">
-                        <div className="medium-6 show-for-medium">
+                        <div className="medium-10 show-for-medium">
                             <HelpContent path="components/DepositWithdraw" section="deposit-short"/>
-                        </div>
-                        <div className="medium-5 medium-offset-1">
-                            <HelpContent account={account.get("name")} path="components/DepositWithdraw" section="receive"/>
                         </div>
                     </div>
                     <div>
                         <div className="grid-block vertical medium-horizontal no-margin no-padding">
-                            <div className="medium-6 small-order-2 medium-order-1">
-                                <Translate component="label" className="left-label" content="gateway.service" />
-                                <select onChange={this.onSetService.bind(this)} className="bts-select" value={activeService} >
-                                    {options}
-                                </select>
-                                {
-                                  currentServiceDown ?
-                                  <Translate style={{color: "red", marginBottom: "1em", display: "block"}} content={`gateway.unavailable_${currentServiceName}`} />
-                                  : null
-                                }
-                            </div>
                             <div className="medium-5 medium-offset-1 small-order-1 medium-order-2" style={{paddingBottom: 20}}>
-                                <Translate component="label" className="left-label" content="gateway.your_account" />
-                                <div className="inline-label">
-                                    <AccountImage
-                                        size={{height: 40, width: 40}}
-                                        account={account.get("name")} custom_image={null}
-                                    />
-                                    <input type="text"
-                                           value={account.get("name")}
-                                           placeholder={null}
-                                           disabled
-                                           onChange={() => {}}
-                                           onKeyDown={() => {}}
-                                           tabIndex={1}
-                                    />
-                                </div>
                             </div>
                         </div>
                     </div>
