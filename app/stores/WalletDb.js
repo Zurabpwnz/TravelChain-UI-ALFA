@@ -20,7 +20,7 @@ import AddressIndex from "stores/AddressIndex";
 ChainConfig.networks.TTT = {
   core_asset: 'TT',
   address_prefix: 'TTT',
-  chain_id: '8340475343b9a7f408741713422ff8580748ca14b920021dcdc892c937c575a0'
+  chain_id: '76f5c6b989b9e091716c75a33ee08bfbd4ed98d7691fdf00146e4db4bbef963b'
 }
 
 
