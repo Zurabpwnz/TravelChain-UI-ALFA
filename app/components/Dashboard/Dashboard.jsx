@@ -16,6 +16,10 @@ class Dashboard extends React.Component {
     constructor(props) {
         super();
         let marketsByChain = {
+            "79525a7d":[
+                ["TT", "DACOM.USD"]
+
+            ],
             "4018d784":[
                 ["USD", "BTS"],
                 ["USD", "OPEN.BTC"],
@@ -71,7 +75,7 @@ class Dashboard extends React.Component {
         this.state = {
             width: null,
             showIgnored: false,
-            featuredMarkets: marketsByChain[chainID] || marketsByChain["4018d784"],
+            featuredMarkets: marketsByChain[chainID] || marketsByChain["79525a7d"],
             newAssets: [
 
             ],

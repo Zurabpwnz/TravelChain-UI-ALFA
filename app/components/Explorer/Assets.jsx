@@ -92,7 +92,7 @@ class Assets extends React.Component {
         }).map((asset) => {
             let description = assetUtils.parseDescription(asset.options.description);
 
-            let marketID = asset.symbol + "_" + (description.market ? description.market : coreAsset ? coreAsset.get("symbol") : "BTS");
+            let marketID = asset.symbol + "_" + (description.market ? description.market : coreAsset ? coreAsset.get("symbol") : "TT");
 
             return (
                 <tr key={asset.symbol}>
@@ -117,7 +117,7 @@ class Assets extends React.Component {
         }).map((asset) => {
             let description = assetUtils.parseDescription(asset.options.description);
 
-            let marketID = asset.symbol + "_" + (description.market ? description.market : coreAsset ? coreAsset.get("symbol") : "BTS");
+            let marketID = asset.symbol + "_" + (description.market ? description.market : coreAsset ? coreAsset.get("symbol") : "TT");
 
             return (
                 <tr key={asset.symbol}>
@@ -150,7 +150,7 @@ class Assets extends React.Component {
             );
         }).map((asset) => {
             let description = assetUtils.parseDescription(asset.options.description);
-            let marketID = asset.symbol + "_" + (description.market ? description.market : coreAsset ? coreAsset.get("symbol") : "BTS");
+            let marketID = asset.symbol + "_" + (description.market ? description.market : coreAsset ? coreAsset.get("symbol") : "TT");
 
             return (
                 <tr key={asset.id.split(".")[2]}>

@@ -56,10 +56,10 @@ class AccountOverview extends React.Component {
             withdrawAsset: null,
             bridgeAsset: null,
             alwaysShowAssets: [
-                "BTS",
+                "TT",
                 // "USD",
                 // "CNY",
-                // "OPEN.BTC",
+                // "DACOM.BTC",
                 // "OPEN.USDT",
                 // "OPEN.ETH",
                 // "OPEN.MAID",
@@ -238,7 +238,7 @@ class AccountOverview extends React.Component {
 
             let {market} = assetUtils.parseDescription(asset.getIn(["options", "description"]));
             symbol = asset.get("symbol");
-            if (symbol.indexOf("OPEN.") !== -1 && !market) market = "USD";
+            if (symbol.indexOf("DACOM.") !== -1 && !market) market = "TT";
             let preferredMarket = market ? market : preferredUnit;
 
             if (notCore && preferredMarket === symbol) preferredMarket = core_asset.get("symbol");
@@ -372,8 +372,8 @@ class AccountOverview extends React.Component {
 
                     const notCore = asset.get("id") !== "1.3.0";
                     let {market} = assetUtils.parseDescription(asset.getIn(["options", "description"]));
-                    if (asset.get("symbol").indexOf("OPEN.") !== -1 && !market) market = "USD";
-                    let preferredMarket = market ? market : core_asset ? core_asset.get("symbol") : "BTS";
+                    if (asset.get("symbol").indexOf("dacom.") !== -1 && !market) market = "USD";
+                    let preferredMarket = market ? market : core_asset ? core_asset.get("symbol") : "TT";
                     let directMarketLink = notCore ? <Link to={`/market/${asset.get("symbol")}_${preferredMarket}`}><Icon name="trade" className="icon-14px" /></Link> : emptyCell;
                     let {isBitAsset, borrowModal, borrowLink} = renderBorrow(asset, this.props.account);
                     if (includeAsset && visible || !includeAsset && !visible) balances.push(
@@ -766,7 +766,7 @@ class BalanceWrapper extends React.Component {
     };
 
     componentWillMount() {
-        if (Apis.instance().chain_id.substr(0, 8) === "4018d784") { // Only fetch this when on BTS main net
+        if (Apis.instance().chain_id.substr(0, 8) === "79525a7d") { // Only fetch this when on BTS main net
             GatewayActions.fetchCoins();
             GatewayActions.fetchBridgeCoins();
         }

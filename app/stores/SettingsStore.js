@@ -7,7 +7,7 @@ import ls from "common/localStorage";
 import { Apis } from "bitsharesjs-ws";
 import { settingsAPIs } from "api/apiConfig";
 
-const CORE_ASSET = "BTS"; // Setting this to BTS to prevent loading issues when used with BTS chain which is the most usual case currently
+const CORE_ASSET = "TT"; // Setting this to BTS to prevent loading issues when used with BTS chain which is the most usual case currently
 
 const STORAGE_KEY = "__graphene__";
 let ss = new ls(STORAGE_KEY);
@@ -69,11 +69,11 @@ class SettingsStore {
             apiServer: [],
             unit: [
                 CORE_ASSET,
-                "USD",
-                "CNY",
-                "BTC",
-                "EUR",
-                "GBP"
+          //      "USD",
+          //      "CNY",
+          //      "BTC",
+          //      "EUR",
+          //      "GBP"
             ],
             showSettles: [
                 {translate: "yes"},
@@ -168,20 +168,28 @@ class SettingsStore {
                 ],
                 markets_39f5e2ed: [ // TESTNET
                     "PEG.FAKEUSD", "BTWTY"
-                ]
+                ],
+                markets_79525a7d:[
+                    "TT"
+                ],
             };
 
             let bases = {
                 markets_4018d784: [ // BTS MAIN NET
-                    "USD", "OPEN.BTC", "CNY", "BTS", "BTC"
+                    "DACOM.USD", "OPEN.BTC", "CNY", "BTS", "BTC"
                 ],
+
+                 markets_79525a7d:[
+                    "DACOM.USD"
+                ],
+
                 markets_39f5e2ed: [ // TESTNET
                     "TEST"
                 ]
             };
 
-            let coreAssets = {markets_4018d784: "BTS", markets_39f5e2ed: "TEST"};
-            let coreAsset = coreAssets[this.starredKey] || "BTS";
+            let coreAssets = {markets_79525a7d: "TT", markets_4018d784: "BTS", markets_39f5e2ed: "TEST"};
+            let coreAsset = coreAssets[this.starredKey] || "TT";
             this.defaults.unit[0] = coreAsset;
 
             let chainBases = bases[this.starredKey] || bases.markets_4018d784;
