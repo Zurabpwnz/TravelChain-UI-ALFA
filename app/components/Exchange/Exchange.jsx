@@ -1121,7 +1121,7 @@ class Exchange extends React.Component {
                     {/* Center Column */}
                     <div style={{paddingTop: 0}} className={cnames("grid-block main-content vertical no-overflow")} >
 
-                        {/* Top bar with info */}
+                        {/* Top bar with info 
                         <ExchangeHeader
                             quoteAsset={quoteAsset} baseAsset={baseAsset}
                             hasPrediction={hasPrediction} starredMarkets={starredMarkets}
@@ -1134,12 +1134,12 @@ class Exchange extends React.Component {
                             marketStats={marketStats}
                             onToggleCharts={this._toggleCharts.bind(this)}
                             showVolumeChart={showVolumeChart}
-                        />
+                        />*/}
 
                         <div className="grid-block vertical no-padding ps-container" id="CenterContent" ref="center">
                         {!showDepthChart ? (
                             <div className="grid-block shrink no-overflow" id="market-charts" >
-                                {/* Price history chart */}
+                                {/* Price history chart 
                                 <PriceChartD3
                                     priceData={this.props.priceData}
                                     volumeData={this.props.volumeData}
@@ -1183,7 +1183,36 @@ class Exchange extends React.Component {
                                     onToggleVolume={() => {SettingsActions.changeViewSetting({showVolumeChart: !showVolumeChart});}}
                                     onToggleChartClamp={() => {SettingsActions.changeViewSetting({enableChartClamp: !enableChartClamp});}}
                                     onChangeIndicatorSetting={this._changeIndicatorSetting.bind(this)}
-                                />
+                                />*/}
+                                  {this.props.miniDepthChart ? <DepthHighChart
+                                    marketReady={marketReady}
+                                    orders={marketLimitOrders}
+                                    showCallLimit={showCallLimit}
+                                    call_orders={marketCallOrders}
+                                    flat_asks={flatAsks}
+                                    flat_bids={flatBids}
+                                    flat_calls={ showCallLimit ? flatCalls : []}
+                                    flat_settles={this.props.settings.get("showSettles") && flatSettles}
+                                    settles={marketSettleOrders}
+                                    invertedCalls={invertedCalls}
+                                    totalBids={totals.bid}
+                                    totalAsks={totals.ask}
+                                    base={base}
+                                    quote={quote}
+                                    height={200}
+                                    onClick={this._depthChartClick.bind(this, base, quote)}
+                                    settlementPrice={(!hasPrediction && feedPrice) && feedPrice.toReal()}
+                                    spread={spread}
+                                    LCP={showCallLimit ? lowestCallPrice : null}
+                                    leftOrderBook={leftOrderBook}
+                                    hasPrediction={hasPrediction}
+                                    noText={true}
+                                    theme={this.props.settings.get("themes")}
+                                /> : null}
+
+
+
+
                             </div>) : (
                             <div className="grid-block vertical no-padding shrink" >
                                 <DepthHighChart
@@ -1294,31 +1323,7 @@ class Exchange extends React.Component {
                             />) : null}
                          <div style={{padding: !this.props.miniDepthChart ? 0 : "0 0 40px 0"}} className="grid-block no-margin vertical shrink">
                             <div onClick={this._toggleMiniChart.bind(this)} className="exchange-content-header clickable" style={{textAlign: "left", paddingRight: 10}}>{this.props.miniDepthChart ? <span>&#9660;</span> : <span>&#9650;</span>}</div>
-                            {this.props.miniDepthChart ? <DepthHighChart
-                                    marketReady={marketReady}
-                                    orders={marketLimitOrders}
-                                    showCallLimit={showCallLimit}
-                                    call_orders={marketCallOrders}
-                                    flat_asks={flatAsks}
-                                    flat_bids={flatBids}
-                                    flat_calls={ showCallLimit ? flatCalls : []}
-                                    flat_settles={this.props.settings.get("showSettles") && flatSettles}
-                                    settles={marketSettleOrders}
-                                    invertedCalls={invertedCalls}
-                                    totalBids={totals.bid}
-                                    totalAsks={totals.ask}
-                                    base={base}
-                                    quote={quote}
-                                    height={200}
-                                    onClick={this._depthChartClick.bind(this, base, quote)}
-                                    settlementPrice={(!hasPrediction && feedPrice) && feedPrice.toReal()}
-                                    spread={spread}
-                                    LCP={showCallLimit ? lowestCallPrice : null}
-                                    leftOrderBook={leftOrderBook}
-                                    hasPrediction={hasPrediction}
-                                    noText={true}
-                                    theme={this.props.settings.get("themes")}
-                                /> : null}
+                        
                         </div>
 
                         </div>{ /* end CenterContent */}
