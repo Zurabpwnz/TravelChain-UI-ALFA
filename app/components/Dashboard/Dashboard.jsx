@@ -17,7 +17,7 @@ class Dashboard extends React.Component {
         super();
         let marketsByChain = {
             "79525a7d":[
-                ["TT", "DACOM.USD"]
+                ["DACOM.USD", "TT"]
 
             ],
             "4018d784":[
