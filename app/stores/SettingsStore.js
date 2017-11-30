@@ -169,7 +169,7 @@ class SettingsStore {
                 markets_39f5e2ed: [ // TESTNET
                     "PEG.FAKEUSD", "BTWTY"
                 ],
-                markets_b96dabd2:[
+                markets_a11ee242:[
                     "TT"
                 ],
             };
@@ -179,7 +179,7 @@ class SettingsStore {
                     "DACOM.USD", "OPEN.BTC", "CNY", "BTS", "BTC"
                 ],
 
-                 markets_b96dabd2:[
+                 markets_a11ee242:[
                     "DACOM.USD"
                 ],
 

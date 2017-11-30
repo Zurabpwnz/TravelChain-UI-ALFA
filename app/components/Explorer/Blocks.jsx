@@ -167,7 +167,6 @@ class Blocks extends React.Component {
     render() {
 
         let {latestBlocks, latestTransactions, globalObject, dynGlobalObject, coreAsset} = this.props;
-        console.log(coreAsset);
         let {blocksHeight, operationsHeight} = this.state;
 
         let blocks = null, transactions = null;

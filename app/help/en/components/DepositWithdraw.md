@@ -1,7 +1,7 @@
 [# receive]
-### Receiving BTS
-In order to receive BTS from another person or from an exchange, simply give them your account name: **{account}**
+### Receiving TT
+In order to receive TT from another person or from an exchange, simply give them your account name: **{account}**
 
 [# deposit-short]
-### Depositing or withdrawing coins
-If you want to deposit or withdraw funds, either in fiat or from other blockchains, you may use a [bridge](introduction/bridges_gateways) or [gateway](introduction/bridges_gateways) service to do so.
+### Token Sale
+If you want to participate on TravelChain TOKEN SALE, deposit your funds from other blockchains, click button "BUY FOR ALL", and confirm your order. [Follow this Instruction](introduction/bridges_gateways).
