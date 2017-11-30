@@ -167,6 +167,7 @@ class Blocks extends React.Component {
     render() {
 
         let {latestBlocks, latestTransactions, globalObject, dynGlobalObject, coreAsset} = this.props;
+        console.log(coreAsset);
         let {blocksHeight, operationsHeight} = this.state;
 
         let blocks = null, transactions = null;
@@ -329,7 +330,9 @@ class Blocks extends React.Component {
                                 />
                             </h3>
                         </div>
+
                     </div>
+
                     <div className="grid-block text-center small-12 medium-3">
                         <div className="grid-content no-overflow">
                             <div className="text-left txtlabel"><Translate component="span" content="explorer.blocks.block_times" /></div>
@@ -344,10 +347,10 @@ class Blocks extends React.Component {
                     </div>
                     <div className="grid-block text-center small-12 medium-3">
                         <div className="grid-content no-overflow clear-fix">
-                            <span className="txtlabel subheader"><Translate component="span" content="explorer.asset.summary.stealth_supply" /></span>
+                            <span className="txtlabel subheader"><Translate component="span" content="explorer.blocks.reserve_fund" /></span>
                             <h3 className="txtlabel">
                                 <FormattedAsset
-                                    amount={coreAsset.getIn(["dynamic", "confidential_supply"])}
+                                    amount={21000000000000 - coreAsset.getIn(["dynamic", "current_supply"])}
                                     asset={coreAsset.get("id")}
                                     decimalOffset={5}
                                 />
