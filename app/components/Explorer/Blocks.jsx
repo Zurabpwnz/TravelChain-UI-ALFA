@@ -347,7 +347,7 @@ class Blocks extends React.Component {
                     </div>
                     <div className="grid-block text-center small-12 medium-3">
                         <div className="grid-content no-overflow clear-fix">
-                            <span className="txtlabel subheader"><Translate component="span" content="explorer.blocks.reserve_fund" /></span>
+                            <span className="txtlabel subheader">Reserve Fund</span>
                             <h3 className="txtlabel">
                                 <FormattedAsset
                                     amount={21000000000000 - coreAsset.getIn(["dynamic", "current_supply"])}
