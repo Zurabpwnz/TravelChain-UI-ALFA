@@ -42,7 +42,7 @@ class SettingsStore {
             locale: "en",
             apiServer: settingsAPIs.DEFAULT_WS_NODE,
             faucet_address: settingsAPIs.DEFAULT_FAUCET,
-            unit: CORE_ASSET,
+            unit: "DACOM.USD",
             showSettles: false,
             showAssetPercent: false,
             walletLockTimeout: 60 * 10,
@@ -57,18 +57,19 @@ class SettingsStore {
         let defaults = {
             locale: [
                 "en",
-                "zh",
-                "fr",
-                "ko",
-                "de",
-                "es",
-                "it",
-                "tr",
-                "ru"
+         //       "zh",
+         //       "fr",
+         //       "ko",
+         //       "de",
+         //       "es",
+         //       "it",
+         //       "tr",
+         //       "ru"
             ],
             apiServer: [],
             unit: [
                 CORE_ASSET,
+                "DACOM.USD",
           //      "USD",
           //      "CNY",
           //      "BTC",
@@ -188,7 +189,7 @@ class SettingsStore {
                 ]
             };
 
-            let coreAssets = {markets_79525a7d: "TT", markets_4018d784: "BTS", markets_39f5e2ed: "TEST"};
+            let coreAssets = {markets_a11ee242: "TT", markets_4018d784: "BTS", markets_39f5e2ed: "TEST"};
             let coreAsset = coreAssets[this.starredKey] || "TT";
             this.defaults.unit[0] = coreAsset;
 

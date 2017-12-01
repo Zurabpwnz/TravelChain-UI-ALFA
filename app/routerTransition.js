@@ -33,7 +33,7 @@ const filterAndSortURLs = (count, latencies) => {
         * Since we don't want users accidentally connecting to the testnet,
         * we filter out the testnet address from the fallback list
         */
-        if (!__TESTNET__ && a.url.indexOf("testnet") !== -1) return false;
+        if (!__TESTNET__ && a.url.indexOf("testnet") !== -1) return true;
         /* Also remove the automatic fallback dummy url */
         if (a.url.indexOf("fake.automatic-selection") !== -1) return false;
         /* Remove insecure websocket urls when using secure protocol */
