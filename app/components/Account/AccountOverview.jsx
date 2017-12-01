@@ -56,6 +56,7 @@ class AccountOverview extends React.Component {
             withdrawAsset: null,
             bridgeAsset: null,
             alwaysShowAssets: [
+                "DACOM.USD",
                 "TT",
                 // "USD",
                 // "CNY",
