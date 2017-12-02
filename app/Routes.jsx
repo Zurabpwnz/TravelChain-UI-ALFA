@@ -105,6 +105,10 @@ const routes = (
         <Route path="transfer" getComponent={(location, cb) => {
             System.import("components/Transfer/Transfer").then(loadRoute(cb)).catch(errorLoading);
         }}/>
+        
+        <Route path="kyc" getComponent={(location, cb) => {
+            System.import("components/Kyc/Kyc").then(loadRoute(cb)).catch(errorLoading);
+        }}/>
 
         <Route path="invoice/:data" getComponent={(location, cb) => {
             System.import("components/Transfer/Invoice").then(loadRoute(cb)).catch(errorLoading);

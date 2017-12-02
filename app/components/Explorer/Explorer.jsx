@@ -27,7 +27,7 @@ class Explorer extends React.Component {
                         <ExplorerCard>
                             <Link to="explorer/blocks">
                                 <div>
-                                    <Icon name="blocks" size="5x" fillClass="fill-black"/>
+                                    <Icon name="blocks" size="5x" />
                                 </div>
                                 <div className="card-divider text-center">
                                     <Translate component="span" content="explorer.blocks.title" />
