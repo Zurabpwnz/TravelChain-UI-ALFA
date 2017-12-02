@@ -5,6 +5,7 @@ import iDB from "idb-instance";
 import idb_helper from "idb-helper";
 import {cloneDeep} from "lodash";
 
+import ls from "common/localStorage";
 import PrivateKeyStore from "stores/PrivateKeyStore";
 import SettingsStore from "stores/SettingsStore";
 import {WalletTcomb} from "./tcomb_structs";
@@ -12,9 +13,13 @@ import TransactionConfirmActions from "actions/TransactionConfirmActions";
 import WalletUnlockActions from "actions/WalletUnlockActions";
 import PrivateKeyActions from "actions/PrivateKeyActions";
 import AccountActions from "actions/AccountActions";
-import {ChainStore, PrivateKey, key, Aes} from "bitsharesjs/es";
+import {ChainStore, PrivateKey, key, Aes, Signature} from "bitsharesjs/es";
 import {Apis, ChainConfig} from "bitsharesjs-ws";
 import AddressIndex from "stores/AddressIndex";
+
+
+const STORAGE_KEY = "__graphene__";
+let ss = new ls(STORAGE_KEY);
 
 // Patch for TTT node
 ChainConfig.networks.TTT = {
@@ -307,7 +312,30 @@ class WalletDb extends BaseStore {
                 if (!_passwordKey) _passwordKey = {};
                 _passwordKey[pub] = priv;
 
-                id++;
+
+                if(role === "active") {
+                    fetch("https://testnet.travelchain.io/api/", { method: "get" })
+                       .then(response => {
+                           let authSigHash = response.headers.get("auth-sig-hash");
+
+                           fetch("https://testnet.travelchain.io/api/auth/", {
+                               method: "POST",
+                               headers: {
+                                   'Content-Type': 'application/json'
+                               },
+                               credentials: 'include',
+                               body: JSON.stringify({
+                                   account: account,
+                                   auth_sig: Signature.sign(authSigHash, priv).toHex()
+                               })
+                           }).then(response => {
+                               console.log(response)
+                               ss.set("backend_token", response.token);
+                           });
+                       });
+                }
+
+              id++;
                 PrivateKeyStore.setPasswordLoginKey({
                     pubkey: pub,
                     import_account_names: [account],
