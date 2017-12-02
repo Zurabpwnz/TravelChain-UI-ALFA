@@ -117,7 +117,7 @@
     "id": "Account ID",
     "mine": "My account",
     "more": "see more",
-    "deposit_withdraw": "Deposit/Withdraw",
+    "deposit_withdraw": "Token Sale",
     "as_collateral": "Collateral",
     "open_orders": "Open Orders",
     "filter_orders": "Filter",
@@ -1362,6 +1362,10 @@
     "limit": "Limit: %(amount)s %(symbol)s",
     "bridge_text": "A bridge lets you exchange an asset into another one, for example BTC to TT.",
     "gateway_text": "Choose whether you want to make a deposit or withdrawal here",
+    "gateway_send_currency": "Copy this personal address and send there cryptocurrency",
+    "gateway_dacom_usd": "Equivalent in DACOM.USD will showing here.",
+    "gateway_dacom_usd_down_text": "After you recieve that, buy TravelToken at the clicking of a green button.",
+    
     "fiat_text": "Fiat deposits and withdrawal are provided by CCEDK. In order to get started you need to complete the registration process. The following conversions are available:",
     "meta": {
       "open_website": "Open Website"
