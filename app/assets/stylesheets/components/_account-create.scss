@@ -105,13 +105,15 @@ div.account-creation {
 
 @include breakpoint(medium) {
     div.account-creation {
+
         margin-top: 2rem;
         padding: 2rem 4rem 1rem 4rem;
-
+        margin-left: auto;
+        margin-right: auto;
         p {
             max-width: 35rem;
-            margin-left: inherit;
-            margin-right: inherit;
+            //margin-left: inherit;
+            //margin-right: inherit;
         }
     }
     div.creation-options {

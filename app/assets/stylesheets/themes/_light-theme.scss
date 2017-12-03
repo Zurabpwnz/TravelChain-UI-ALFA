@@ -16,7 +16,7 @@ $light-panel-bg-color: #FFF;
 $super-light-panel-bg-color: darken($light-panel-bg-color, 1%);
 $button-bg-color: #2196F3;
 $secondary-button-bg-color: #999999;
-$input-background: darken($bg-color, 8%);
+$input-background: #e8e9eb;
 
 $alert-color: $error-text-color;
 $info-color: #CE7925;
@@ -31,11 +31,11 @@ $call-color: #BBBF2B;
 $positive-color: #528c0a;
 $negative-color: rgba(225, 66, 74, 1);
 $row-accent-color: #FFFFFF;
-$header-color: #DCDCDC;
+$header-color: #cbd7e1;
 
 // Account table view colors
-$account-header: #b1b1b1;
-$account-cells: #dadada;
+$account-header: #FFF;
+$account-cells: #FFF;
 $account-green: #488a00;
 $account-primarytext: $primary-text-color;
 $account-dimmed: #5d5d5d;

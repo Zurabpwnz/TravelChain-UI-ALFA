@@ -237,7 +237,7 @@ class AccountPermissions extends React.Component {
         return (
             <div className="grid-content">
                 <div className="generic-bordered-box">
-                    <Tabs setting="permissionsTabs" tabsClass="no-padding bordered-header" contentClass="grid-content no-overflow no-padding">
+                    <Tabs setting="permissionsTabs" tabsClass="no-padding account-overview bordered-header" contentClass="grid-content no-overflow no-padding">
 
                     <Tab title="account.perm.active">
                             <HelpContent style={{maxWidth: "800px"}} path="components/AccountPermActive" />

@@ -33,7 +33,7 @@ class Identicon extends Component {
           let size = ctx.canvas.width;
           ctx.clearRect(0, 0, size, size);
           ctx.fillRect(0, 0, size, size);
-          ctx.clearRect(0+1, 0+1, size-2, size-2);
+          ctx.clearRect(0, 0, size, size);
           ctx.font = `${size}px sans-serif`;
           ctx.fillText("?", size/4, size - size/6);
       }
