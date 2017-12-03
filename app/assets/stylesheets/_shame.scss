@@ -261,6 +261,9 @@ label.inline {
   display: inline;
 }
 
+.grid-block.shrink.vertical{
+  flex: auto;
+}
 .blocks-row {
   > div.grid-block {
     padding-bottom: 0 !important;

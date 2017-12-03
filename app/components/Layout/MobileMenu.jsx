@@ -48,9 +48,8 @@ class MobileMenu extends React.Component {
         }
 
         let linkToAccountOrDashboard;
-        if (linkedAccounts.size > 0) linkToAccountOrDashboard = <a onClick={this._onNavigate.bind(this, "/dashboard")}><Translate content="header.dashboard" /></a>;
-        else linkToAccountOrDashboard = <Link to="/create-account">Create Account</Link>;
-
+        linkToAccountOrDashboard = <a onClick={this._onNavigate.bind(this, "/dashboard")}><Translate content="header.dashboard" /></a>;
+        
         let tradeLink = this.props.lastMarket ?
             <a onClick={this._onNavigate.bind(this, `/market/${this.props.lastMarket}`)}><Translate content="header.exchange" /></a> :
             <a onClick={this._onNavigate.bind(this, "/explorer/markets")}><Translate content="header.exchange" /></a>;
@@ -74,12 +73,7 @@ class MobileMenu extends React.Component {
                     </ul>
                 </section>
 
-                <section style={{marginTop: "3rem"}} className="block-list">
-                  <header><Translate content="account.accounts" /></header>
-                  <ul>
-                      {accounts}
-                  </ul>
-                  </section>
+              
                 </div>
             </Panel>
         );
