@@ -258,7 +258,7 @@ class Header extends React.Component {
         const flagDropdown = <ActionSheet>
         </ActionSheet>;
 
-        const enableDepositWithdraw = Apis.instance().chain_id.substr(0, 8) === "a11ee242";
+        const enableDepositWithdraw = Apis.instance().chain_id.substr(0, 8) === "6170351d";
 
         return (
             <div className="header menu-group primary">

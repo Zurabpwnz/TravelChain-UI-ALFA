@@ -170,7 +170,7 @@ class SettingsStore {
                 markets_39f5e2ed: [ // TESTNET
                     "PEG.FAKEUSD", "BTWTY"
                 ],
-                markets_a11ee242:[
+                markets_6170351d:[
                     "TT"
                 ],
             };
@@ -180,7 +180,7 @@ class SettingsStore {
                     "DACOM.USD", "OPEN.BTC", "CNY", "BTS", "BTC"
                 ],
 
-                 markets_a11ee242:[
+                 markets_6170351d:[
                     "DACOM.USD"
                 ],
 
@@ -189,7 +189,7 @@ class SettingsStore {
                 ]
             };
 
-            let coreAssets = {markets_a11ee242: "TT", markets_4018d784: "BTS", markets_39f5e2ed: "TEST"};
+            let coreAssets = {markets_6170351d: "TT", markets_4018d784: "BTS", markets_39f5e2ed: "TEST"};
             let coreAsset = coreAssets[this.starredKey] || "TT";
             this.defaults.unit[0] = coreAsset;
 
