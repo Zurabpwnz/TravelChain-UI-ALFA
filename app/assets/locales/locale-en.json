@@ -433,6 +433,16 @@
     "newer": "Newer",
     "older": "Older"
   },
+  "kyc": {
+    "header": "Enter your personal data",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "country": "Country",
+    "contact_email_or_phone": "Contact email/phone",
+    "address": "Address",
+    "birthday": "Birthday",
+    "kind_of_activity": "Kind of activity"
+  },
   "transfer": {
     "header": "Transfer details",
     "from": "From",

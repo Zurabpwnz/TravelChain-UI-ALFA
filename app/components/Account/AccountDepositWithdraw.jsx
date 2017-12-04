@@ -20,6 +20,11 @@ import RuDexGateway from "../DepositWithdraw/rudex/RuDexGateway";
 import GatewayStore from "stores/GatewayStore";
 import GatewayActions from "actions/GatewayActions";
 import AccountImage from "../Account/AccountImage";
+import ls from "common/localStorage";
+import axios from 'axios'
+
+const STORAGE_KEY = "__graphene__";
+let ss = new ls(STORAGE_KEY);
 
 class AccountDepositWithdraw extends React.Component {
 
@@ -39,7 +44,8 @@ class AccountDepositWithdraw extends React.Component {
             rudexService: props.viewSettings.get("rudexService", "gateway"),
             btService: props.viewSettings.get("btService", "bridge"),
             metaService: props.viewSettings.get("metaService", "bridge"),
-            activeService: props.viewSettings.get("activeService", 0)
+            activeService: props.viewSettings.get("activeService", 0),
+            isLoading: false
         };
     }
 
@@ -57,9 +63,19 @@ class AccountDepositWithdraw extends React.Component {
         );
     }
 
-    componentWillMount() {
+
+      componentWillMount() {
+        this.setState({isLoading: true})
+
         accountUtils.getFinalFeeAsset(this.props.account, "transfer");
-    }
+
+        axios.get("https://testnet.travelchain.io/api/accounts/me/", {
+            headers: {
+                Authorization: `JWT ${ss.get("backend_token")}`
+            }
+        }).then(() => { this.setState({isLoading: false}); this.forceUpdate(); }, () => this.props.router.push("/kyc"));
+      }
+
 
     toggleOLService(service) {
         this.setState({
@@ -127,7 +143,7 @@ class AccountDepositWithdraw extends React.Component {
                         </div> */}
                         <div className="service-selector">
                             <ul className="button-group segmented no-margin">
-                           {/*     <li onClick={this.toggleOLService.bind(this, "gateway")} className={olService === "gateway" ? "is-active" : ""}><a><Translate content="gateway.gateway" /></a></li> 
+                           {/*     <li onClick={this.toggleOLService.bind(this, "gateway")} className={olService === "gateway" ? "is-active" : ""}><a><Translate content="gateway.gateway" /></a></li>
                                 <li onClick={this.toggleOLService.bind(this, "fiat")} className={olService === "fiat" ? "is-active" : ""}><a>Fiat</a></li> */}
                             </ul>
                         </div>
@@ -155,7 +171,7 @@ class AccountDepositWithdraw extends React.Component {
             )
         });
 
-       
+
 
         return serList;
     }
@@ -197,7 +213,7 @@ class AccountDepositWithdraw extends React.Component {
         const currentServiceDown = servicesDown.get(currentServiceName);
 
         return (
-            <div className={this.props.contained ? "grid-content" : "grid-container"}>
+            <div  className={this.props.contained ? "grid-content" : "grid-container"}>
                 <div className={this.props.contained ? "" : "grid-content"} style={{paddingTop: "2rem"}}>
 
                     <div className="grid-block vertical medium-horizontal no-margin no-padding">
@@ -219,7 +235,7 @@ class AccountDepositWithdraw extends React.Component {
             </div>
         );
     }
-};
+}
 AccountDepositWithdraw = BindToChainState(AccountDepositWithdraw);
 
 class DepositStoreWrapper extends React.Component {

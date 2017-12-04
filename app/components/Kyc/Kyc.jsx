@@ -64,7 +64,14 @@ class Kyc extends React.Component {
             feeAsset: null,
             fee_asset_id: "1.3.0",
             feeAmount: new Asset({amount: 0}),
-            feeStatus: {}
+            feeStatus: {},
+            first_name: '',
+            last_name: '',
+            country: '',
+            birthday: '',
+            contact_email_telephone: '',
+            address: '',
+            kind_of_activity: ''
         };
 
     };
@@ -271,6 +278,11 @@ class Kyc extends React.Component {
         this.nestedRef = ref;
     }
 
+
+  onKYCformInputChanged (e) {
+        this.setState({[e.taget.id]: e.target.value});
+    }
+
     _setTotal(asset_id, balance_id) {
         const {feeAmount} = this.state;
         let balanceObject = ChainStore.getObject(balance_id);
@@ -334,44 +346,9 @@ class Kyc extends React.Component {
     }
 
     render() {
-        let from_error = null;
-        let {propose, from_account, to_account, asset, asset_id, propose_account, feeAmount,
-            amount, error, to_name, from_name, memo, feeAsset, fee_asset_id, balanceError} = this.state;
-        let from_my_account = AccountStore.isMyAccount(from_account) || from_name === this.props.passwordAccount;
+        let {error, from_name, first_name, last_name, country, birthday, contact_email_telephone, address, kind_of_activity} = this.state;
 
-        if(from_account && ! from_my_account && ! propose ) {
-            from_error = <span>
-                {counterpart.translate("account.errors.not_yours")}
-                &nbsp;(<a onClick={this.onPropose.bind(this, true)}>{counterpart.translate("propose")}</a>)
-            </span>;
-        }
 
-        let { asset_types, fee_asset_types } = this._getAvailableAssets();
-        let balance = null;
-
-        // Estimate fee
-        let fee = this.state.feeAmount.getAmount({real: true});
-        if (from_account && from_account.get("balances") && !from_error) {
-
-            let account_balances = from_account.get("balances").toJS();
-            if (asset_types.length === 1) asset = ChainStore.getAsset(asset_types[0]);
-            if (asset_types.length > 0) {
-                let current_asset_id = asset ? asset.get("id") : asset_types[0];
-                let feeID = feeAsset ? feeAsset.get("id") : "1.3.0";
-                balance = (<span style={{borderBottom: "#A09F9F 1px dotted", cursor: "pointer"}} onClick={this._setTotal.bind(this, current_asset_id, account_balances[current_asset_id], fee, feeID)}><Translate component="span" content="transfer.available"/>: <BalanceComponent balance={account_balances[current_asset_id]}/></span>);
-            } else {
-                balance = "No funds";
-            }
-        }
-
-        let propose_incomplete = propose && ! propose_account;
-        const amountValue = parseFloat(String.prototype.replace.call(amount, /,/g, ""));
-        const isAmountValid = amountValue && !isNaN(amountValue);
-        const isToAccountValid = to_account && to_account.get("name") === to_name;
-        const isSendNotValid = !from_account || !isToAccountValid || !isAmountValid || !asset || from_error || propose_incomplete || balanceError;
-        let accountsList = Immutable.Set();
-        accountsList = accountsList.add(from_account);
-        let tabIndex = 1;
 
         return (
             <div className="grid-block vertical">
@@ -379,128 +356,37 @@ class Kyc extends React.Component {
 
                 <form style={{paddingBottom: 20, overflow: "visible"}} className="grid-content small-12 medium-6 large-5 large-offset-1 full-width-content" onSubmit={this.onSubmit.bind(this)} noValidate>
 
-                        <Translate content="transfer.header" component="h2" />
-                        {/*  F R O M  */}
-                        <div className="content-block">
-                            <AccountSelector label="transfer.from" ref="from"
-                                accountName={from_name}
-                                onChange={this.fromChanged.bind(this)}
-                                onAccountChanged={this.onFromAccountChanged.bind(this)}
-                                account={from_name}
-                                size={60}
-                                error={from_error}
-                                tabIndex={tabIndex++}
-                                onDropdownSelect={this._onAccountDropdown.bind(this)}
-                                dropDownContent={AccountStore.getMyAccounts()}
-                            />
-                        </div>
-                        {/*  T O  */}
-                        <div className="content-block">
-                            <AccountSelector
-                                label="transfer.to"
-                                accountName={to_name}
-                                onChange={this.toChanged.bind(this)}
-                                onAccountChanged={this.onToAccountChanged.bind(this)}
-                                account={to_name}
-                                size={60}
-                                tabIndex={tabIndex++}
-                            />
-                        </div>
-                        {/*  A M O U N T   */}
-                        <div className="content-block transfer-input">
-                            <AmountSelector
-                                label="transfer.amount"
-                                amount={amount}
-                                onChange={this.onAmountChanged.bind(this)}
-                                asset={asset_types.length > 0 && asset ? asset.get("id") : ( asset_id ? asset_id : asset_types[0])}
-                                assets={asset_types}
-                                display_balance={balance}
-                                tabIndex={tabIndex++}
-                            />
-                            {this.state.balanceError ? <p className="has-error no-margin" style={{paddingTop: 10}}><Translate content="transfer.errors.insufficient" /></p>:null}
-                        </div>
-                        {/*  M E M O  */}
-                        <div className="content-block transfer-input">
-                            {memo && memo.length ? <label className="right-label">{memo.length}</label> : null}
-                            <Translate className="left-label tooltip" component="label" content="transfer.memo" data-place="top" data-tip={counterpart.translate("tooltip.memo_tip")}/>
-                            <textarea style={{marginBottom: 0}} rows="1" value={memo} tabIndex={tabIndex++} onChange={this.onMemoChanged.bind(this)} />
-                            {/* warning */}
-                            { this.state.propose ?
-                                <div className="error-area" style={{position: "absolute"}}>
-                                    <Translate content="transfer.warn_name_unable_read_memo" name={this.state.from_name} />
-                                </div>
-                            :null}
+                    <Translate content="kyc.header" component="h2" />
+                  {/*  First name  */}
+                    <div className="content-block transfer-input">
+                        <Translate className="left-label tooltip" component="label" content="kyc.first_name" data-place="top"/>
+                        <input type="text" style={{marginBottom: 0}} value={first_name} id="first_name" onChange={this.onKYCformInputChanged.bind(this)} />
+                      {/* warning */}
+                      {/*{ this.state.propose ?*/}
+                        {/*<div className="error-area" style={{position: "absolute"}}>*/}
+                            {/*<Translate content="transfer.warn_name_unable_read_memo" name={this.state.from_name} />*/}
+                        {/*</div>*/}
+                        {/*:null}*/}
 
-                        </div>
+                    </div>
 
-                        {/*  F E E   */}
-                        <div className={"content-block transfer-input fee-row" + (this.state.propose ? " proposal" : "")}>
-                            <AmountSelector
-                                refCallback={this.setNestedRef.bind(this)}
-                                label="transfer.fee"
-                                disabled={true}
-                                amount={fee}
-                                onChange={this.onFeeChanged.bind(this)}
-                                asset={fee_asset_types.length && feeAmount ? feeAmount.asset_id : ( fee_asset_types.length === 1 ? fee_asset_types[0] : fee_asset_id ? fee_asset_id : fee_asset_types[0])}
-                                assets={fee_asset_types}
-                                tabIndex={tabIndex++}
-                                error={this.state.hasPoolBalance === false ? "transfer.errors.insufficient" : null}
-                            />
-                            {propose ?
-                                <button className={classnames("button float-right no-margin", {disabled: isSendNotValid})} type="submit" value="Submit" tabIndex={tabIndex++}>
-                                    <Translate component="span" content="propose" />
-                                </button> :
-                                <button className={classnames("button float-right no-margin", {disabled: isSendNotValid})} type="submit" value="Submit" tabIndex={tabIndex++}>
-                                    <Translate component="span" content="transfer.send" />
-                                </button>
-                            }
-                        </div>
+                  {/*  First name  */}
+                    <div className="content-block transfer-input">
+                        <Translate className="left-label tooltip" component="label" content="kyc.last_name" data-place="top"/>
+                        <input type="text" style={{marginBottom: 0}} value={last_name} id="last_name" onChange={this.onKYCformInputChanged.bind(this)} />
+                    </div>
 
-                        {/* P R O P O S E   F R O M
-                            Having some proposed transaction logic here (prior to the transaction confirmation)
-                            allows adjusting of the memo to / from parameters.
-                        */}
-                        {propose ?
-                        <div className="full-width-content form-group transfer-input">
-                            <label className="left-label"><Translate content="account.propose_from" /></label>
-                            <AccountSelect
-                                account_names={AccountStore.getMyAccounts()}
-                                onChange={this.onProposeAccount.bind(this)}
-                                tabIndex={tabIndex++}
-                            />
-                        </div>:null}
+                  {/* Country */}
+                    <div className="content-block transfer-input">
+                        <Translate className="left-label tooltip" component="label" content="kyc.country" data-place="top"/>
+                        <input type="text" style={{marginBottom: 0}} value={country} id="country" onChange={this.onKYCformInputChanged.bind(this)} />
+                    </div>
 
-
-                        {/*  S E N D  B U T T O N  */}
-                        {error ? <div className="content-block has-error">{error}</div> : null}
-                        <div>
-                            {propose ?
-                            <span>
-                                <button className=" button" onClick={this.onPropose.bind(this, false)} tabIndex={tabIndex++}>
-                                    <Translate component="span" content="cancel" />
-                                </button>
-                            </span> :
-                            null}
-                        </div>
-
-                        {/* TODO: show remaining balance */}
+                    <button className={classnames("button float-right no-margin", {disabled: isSendNotValid})} type="submit" value="Submit" tabIndex={tabIndex++}>
+                        <Translate component="span" content="transfer.send" />
+                    </button>
                 </form>
-                <div className="grid-content small-12 medium-6 large-4 large-offset-1 right-column">
-                <div className="grid-content no-padding">
-                    <RecentTransactions
-                        accountsList={accountsList}
-                        limit={25}
-                        compactView={true}
-                        filter="transfer"
-                        fullHeight={true}
-                    />
-                </div>
-                </div>
-
-                <div className="grid-content medium-6 large-4">
-
-                </div>
-                </div>
+              </div>
             </div>
         );
     }

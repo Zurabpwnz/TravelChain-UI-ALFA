@@ -190,7 +190,7 @@ class Dashboard extends React.Component {
         let fillQuestionnaireBoxStyles = {
           border: '1px solid rgba(128, 128, 128, 0.45)',
           display: 'flex',
-          'justify-content': 'center'
+          justifyContent: 'center'
         }
         return (
             <div ref="wrapper" className="grid-block page-layout vertical">

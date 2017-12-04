@@ -5,6 +5,7 @@ import iDB from "idb-instance";
 import idb_helper from "idb-helper";
 import {cloneDeep} from "lodash";
 
+import axios from 'axios'
 import ls from "common/localStorage";
 import PrivateKeyStore from "stores/PrivateKeyStore";
 import SettingsStore from "stores/SettingsStore";
@@ -314,27 +315,22 @@ class WalletDb extends BaseStore {
 
 
                 if(role === "active") {
-                    fetch("https://testnet.travelchain.io/api/", { method: "get" })
+                    axios.get("https://testnet.travelchain.io/api/", { method: "get", withCredentials: true })
                        .then(response => {
-                           let authSigHash = response.headers.get("auth-sig-hash");
+                           let authSigHash = response.headers["auth-sig-hash"];
 
-                           fetch("https://testnet.travelchain.io/api/auth/", {
-                               method: "POST",
+                           axios.post("https://testnet.travelchain.io/api/auth/", JSON.stringify({
+                               account: account,
+                               auth_sig: Signature.sign(authSigHash, priv).toHex()
+                           }), {
                                headers: {
-                                   'Content-Type': 'application/json'
-                               },
-                               credentials: 'include',
-                               body: JSON.stringify({
-                                   account: account,
-                                   auth_sig: Signature.sign(authSigHash, priv).toHex()
-                               })
+                                   "Content-Type": "application/json"
+                               }
                            }).then(response => {
-                               console.log(response)
-                               ss.set("backend_token", response.token);
+                               ss.set("backend_token", response.data.token);
                            });
                        });
                 }
-
               id++;
                 PrivateKeyStore.setPasswordLoginKey({
                     pubkey: pub,
