@@ -184,10 +184,11 @@ table > tbody > tr.control-row > td {
 
 .modal {
   max-width: 700px;
-  border-radius: 0px;
+  border-radius: 30px;
 }
 
 div.modal {
+ background: $header-color;
   overflow: visible !important;
 }
 
@@ -260,6 +261,9 @@ label.inline {
   display: inline;
 }
 
+.grid-block.shrink.vertical{
+  flex: auto;
+}
 .blocks-row {
   > div.grid-block {
     padding-bottom: 0 !important;
@@ -412,7 +416,7 @@ input[type=number] {
 
 section input[type="text"], section input[type="password"] {
   border:none;
-  max-width: 30rem;
+  //max-width: 30rem;
   &:hover, &:active, &:focus {
     border:none;
   }

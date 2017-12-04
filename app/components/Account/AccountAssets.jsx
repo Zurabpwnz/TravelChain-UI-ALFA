@@ -268,7 +268,7 @@ class AccountAssets extends React.Component {
                     </div>
 
                     <div className="content-block">
-                        <Link to={`/account/${account_name}/create-asset/`}><button className="button outline"><Translate content="transaction.trxTypes.asset_create" /></button></Link>
+                        <Link to={`/account/${account_name}/create-asset/`}><button className="button warning"><Translate content="transaction.trxTypes.asset_create" /></button></Link>
                     </div>
 
                     <BaseModal id="issue_asset" overlay={true}>

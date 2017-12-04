@@ -44,8 +44,9 @@ td > input, td > .autocomplete input {
 
 div.account-image {
     .icon.key > svg {
-        height: 2.4rem !important;
-        width: 2.4rem !important;
+        fill: #808080 !important;
+        height: 2rem !important;
+        width: 2rem !important;
     }
 }
 
@@ -72,8 +73,9 @@ div.account-image {
     float: left;
     width: 3.5rem;
     > canvas, .icon.key > svg {
-        height: 2.4rem !important;
-        width: 2.4rem !important;
+        height: 2rem !important;
+        width: 2rem !important;
+      
     }
   }
   > .content-area {

@@ -152,6 +152,9 @@ $account-background
     }
 
     .modal {
+            background-color: #dee3ed;
+    border: darkgrey;
+    border-style: double;
         @include color($light-text-color, $account-cells);
         .close-button {
             color: $secondary-text-color;
@@ -160,6 +163,7 @@ $account-background
             }
         }
         .modal-header {
+        margin: auto;
             > h6 {
                 color: $secondary-text-color;
             }
@@ -210,7 +214,7 @@ $account-background
         .left-column {
             border-top-color: $bg-color;
             border-bottom-color: $bg-color;
-            background-color: $panel-bg-color; //lighten($bg-color, 4%);
+            background-color: $header-color;
 
         }
 
@@ -264,7 +268,7 @@ $account-background
     }
 
     .header .button,  .header .button:active {
-        background-color: $panel-bg-color !important;
+        background-color: $header-color !important;
     }
 
     .header a.button.create-account {
@@ -332,9 +336,13 @@ $account-background
 
     .card {
         @include color($primary-text-color, $panel-bg-color);
-        background-color: $panel-bg-color;
+        background-color: #789bb0;
+        border-radius: 10px;
+        border: 1px;
+        font-weight: 600;
+        border-style: groove;
         &:hover {
-            background-color: lighten($panel-bg-color, 4%);
+            background-color: lighten(#789bb0, 4%);
             > h4 {
                 background-color: lighten($light-panel-bg-color, 4%);
             }
@@ -343,7 +351,7 @@ $account-background
             color: $primary-text-color;
         }
         .card-divider {
-            @include color($primary-text-color, $light-panel-bg-color);
+            @include color($primary-text-color, $header-color);
         }
         > h4 {
             background-color: $light-panel-bg-color;
@@ -474,22 +482,24 @@ $account-background
     }
 
     input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="search"], textarea {
-        background-color: $input-background;
-        border: 0;
-        color: $primary-text-color;
-        &:hover, &:focus, &:active {
-            background-color: $input-background;
-        }
-        &:focus {
-            border-color: #aaa;
-        }
+        background: aliceblue;
     }
 
     ul.button-group.segmented {
+    font-size: 1.1rem;
+        > li > a {
+        border: 0;
+        background: $bg-color;
+        }
         > li.is-active > a {
-            background: $input-background;
+
+            background: $bg-color;
             color: $primary-text-color;
-            border-bottom: 1px solid $button-bg-color;
+          //  border-bottom: 1px solid $button-bg-color;
+                     border-bottom-width: 2px; /* Толщина линии внизу */
+                     border-bottom-style: solid; /* Стиль линии внизу */
+                     border-bottom-color: #0e8df2; /* Цвет линии внизу */
+              
         }
     }
     // Tabs
@@ -801,7 +811,7 @@ $account-background
     }
 
     .menu-group.primary, .menu-group.primary .menu-bar {
-        background-color: $panel-bg-color;
+        background-color: $header-color;
 
         .menu-bar > li {
 
@@ -1177,6 +1187,9 @@ $account-background
             background-color: lighten($positive-color, 5%);
         }
     }
+   .backup-submit{
+        margin: auto;
+        }
 
     div.Account_create {
         button.submit-button, div.backup-submit .button {
@@ -1245,6 +1258,7 @@ $account-background
                 &:hover {
                     background-color: $account-header;
                     color: $account-primarytext;
+                  
                 }
                 > div.tab-subtext {
                     color: $account-green;
@@ -1255,6 +1269,10 @@ $account-background
                 > a {
                     color: $account-primarytext;
                     background-color: lighten($account-header, 4%);
+                     border-bottom-width: 2px; /* Толщина линии внизу */
+                     border-bottom-style: solid; /* Стиль линии внизу */
+                     border-bottom-color: #0e8df2; /* Цвет линии внизу */
+              
                 }
             }
             &.total-value {

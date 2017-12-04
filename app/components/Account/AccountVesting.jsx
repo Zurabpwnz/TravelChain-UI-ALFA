@@ -143,7 +143,7 @@ class AccountVesting extends React.Component {
         });
 
         return (
-            <div className="grid-content" style={{overflowX: "hidden"}}>
+            <div className="grid-content" style={{paddingTop: "2rem"}}>
                 <Translate content="account.vesting.explain" component="p"/>
                 {!balances.length ? (
                     <h4 style={{paddingTop: "1rem"}}>
