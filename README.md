@@ -1,171 +1,286 @@
-BitShares-UI
-============
+TravelChain Github Readme
 
-This is a light wallet that connects to a BitShares API provided by the *witness_node* executable.
+Introduction
 
+TravelChain Core is the BitShares-based blockchain implementation and command-line interface. The web wallet is TravelChain UI.
 
-It *stores all keys locally* in the browser, *never exposing your keys to anyone* as it signs transactions locally before transmitting them to the API server which then broadcasts them to the blockchain network. The wallet is encrypted with a password of your choosing and encrypted in a browser database.
+Visit travelchain.io to learn about TravelChain and join the community at Telegram. Visit BitShares.org to learn about BitShares.
 
->这是一个链接BitShares API的轻钱包，而BitShares API由可执行的 *witness_node*  提供
+Existing repositories can be updated with the following steps:
 
->它把*所有的密钥存储在本地浏览器上*，*绝对不要把你的密钥暴露给任何人*，因为它会先在本地签署交易，再传到API服务器上，最后广播至区块链网络。这个钱包被一个你选择的密码加密，也会被浏览器数据库加密。
-
-## Getting started&emsp;项目部署
-
-BitShares-UI depends node Node.js, and version 6+ is required.
-
-On Ubuntu and OSX, the easiest way to install Node is to use the [Node Version Manager](https://github.com/creationix/nvm).
-
-To install NVM for Linux/OSX, simply copy paste the following in a terminal:
-
->BitShares-UI依赖于Node.js, 需要版本号v6以上。目前还没有被版本号v7测试。
-
->在Ubuntu和OSX，安装Node最简单的方式是用[NVM](https://github.com/creationix/nvm)。
-
->为了安装Linux/OSX的NVM，只需要简单地把下列的代码复制粘贴进命令控制终端:
-```
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash
-nvm install v6
-nvm use v6
-```
-
-Once you have Node installed, you can clone the repo:
-
->一旦你把节点安装完毕，你就可以克隆这一版本库:
-```
-git clone https://github.com/bitshares/bitshares-ui.git
-cd bitshares-ui
-```
-
-Before launching the GUI you will need to install the npm packages:
-
->在装载GUI前，你需要为每一子目录安装npm包:
-```
-npm install
-```
-
-## Running the dev server&emsp;运行开发服务器
-
-The dev server uses Express in combination with Webpack.
-
-Once all the packages have been installed you can start the development server by running:
-
->开发服务器使用了EXPRESS和Webpack.
-
->一旦所有的封包被安装了，你就可以通过'web'文件夹并且输入下列代码，开始启动开发服务器
-```
-npm start
-```
-
-Once the compilation is done the GUI will be available in your browser at: `localhost:8080` or `127.0.0.1:8080`. Hot Reloading is enabled so the browser will live update as you edit the source files.
-
->一旦编译成功，GUI会在你的浏览器上成功部署，链接是`localhost:8080` 或者`127.0.0.1:8080`。我们加载了热重载机制，只要你编辑源文件，浏览器便会实时更新。
-
-## Testnet&emsp;测试网络
-By default bitshares-ui connects to the live BitShares network, but it's very easy to switch it to the testnet run by Xeroc. To do so, open the UI in a browser, go to Settings, then under Access, select the *Public Testnet Server* in the dropdown menu. You should also change the faucet if you need to create an account, the testnet faucet address is https://testnet.bitshares.eu.
-
-The UI will reload and connect to the testnet, where you can use the faucet to create an account and receive an initial sum of test BTS.
-
->通过默认设置，bitshares-ui会连接到实时比特股网络，但要想切换到由Xeroc创建的测试网络也很容易。步骤是，在浏览器中打开UI，到设置（Settings）界面，在出入口(Access)下面，在下拉条里选择公共测试网络服务器。如果你想要建立一个账户，你也需要切换水龙头，测试网络的水龙头地址https://testnet.bitshares.eu 。
-
->UI就会重载并连接至测试网络。在这里你就可以用水龙头创建一个账户并收到一些用于测试的BTS。
-
-![image](https://cloud.githubusercontent.com/assets/6890015/22055747/f8e15e68-dd5c-11e6-84cd-692749b578d8.png)
-
-## Production&emsp;产品
-If you'd like to host your own wallet somewhere, you should create a production build and host it using NGINX or Apache. In order to create a prod bundle, simply run the following command:
-
->如果你想要做主机来持有你自己的钱包，你需要建立一个生产构件，并通过NGINX或者Apache做主机。为了建立一个bundle，只用简单地运行下列命令:
-```
-npm run build
-```
-This will create a bundle in the /dist folder that can be hosted with the web server of your choice.
+git remote set-url origin https://github.com/TravelChain/travelchain-core.git
+git checkout master
+git remote set-head origin --auto
+git pull
+git submodule sync --recursive
+git submodule update --init --recursive
 
 
->这样就能在建立一个/dist目录下建立一个bundle,让你选择的网络服务器来主持它。
-
-### Installable wallets
-We use Electron to provide installable wallets, available for Windows, OSX and Linux Debian platforms such as Ubuntu. First, make sure your local python version is 2.7.x, as a dependency requires this.
-
-On Linux you will need to install the following packages to handle icon generation:
-
-`sudo apt-get install --no-install-recommends -y icnsutils graphicsmagick xz-utils`
-
-For building, each architecture has it's own script that you can use to build your native binary:
-
-__Linux__
-`npm run package-deb`
-__Windows__
-`npm run package-win`
-__Mac__
-`npm run package-mac`
-
-This will compile the UI with some special modifications for use with Electron, generate installable binaries with Electron and copy the result to the root `build/binaries` folder.
-
-## 可安装钱包
-我们使用Electron来提供可安装钱包，Windows, OSX 和Linux平台如Ubuntu都可以使用。首先，在'electron'文件夹里安装需要的封包。然后到'web'文件夹里运行`npm run electron`。这样就会在编译UI的同时针对Electron做一些特殊的改进，并将结果粘贴至根文件夹 `electron/build`。现在，为了创建一个钱包到你的平台上，回到`electron`文件夹并运行`npm run release`。
+Getting started
+For OS X
+Install XCode and its command line tools by following the instructions here: https://guide.macports.org/#installing.xcode. In OS X 10.11 (El Capitan) and newer, you will be prompted to install developer tools when running a developer command in the terminal. This step may not be needed.
+Install Homebrew by following the instructions here: http://brew.sh/
+Initialize Homebrew:
+brew doctor
+brew update
 
 
-## Contributing
-Please work off the staging branch and make pull requests to that branch. The master branch will only be updated for new releases.
+Install dependencies:
+brew install boost cmake git openssl autoconf automake
+brew link --force openssl
 
-The Bitshares UI team is supported by this [worker proposal](http://www.bitshares.foundation/workers/2017-08-bill-butler). It provides the funds needed to pay the coordinator and the bounties and the Bitshares Foundation.
 
-If you would like to get involved, we have a [Telegram chatroom](https://t.me/BitSharesDEX) where you can ask questions and get help. You may also join [BitShares on Discord](https://discord.gg/GsjQfAJ)
+Optional. To support importing Bitcoin wallet files:
+brew install berkeley-db
 
-- Coordinator: Bill Butler, @billbutler
-- Lead Developer: Sigve Kvalsvik, @sigvek
-- Developer: Calvin Froedge, @calvin
-- Code Review: Fabian Schuh, @xeroc
 
-## 贡献
+Optional. To use TCMalloc in LevelDB:
+brew install google-perftools
 
-Bitshares UI团队被这一[工作提案](https://steemit.com/bitshares/@billbutler/translated-by-zhaomu-l)支持。它提供用来支付协调者，悬赏金和比特股基金的资金。
 
-如果你想参与贡献，我们有一个[Telegram 聊天室](https://t.me/BitSharesDEX)，在这里你可以问问题并得到帮助。
+Clone the Graphene repository:
+git clone https://github.com/cryptonomex/graphene.git
+cd graphene
 
-- 协调者: Bill Butler, @billbutler
-- 主程序员: Sigve Kvalsvik, @sigvek
-- 程序员: Calvin Froedge, @calvin
-- 代码审核: Fabian Schuh, @xeroc
 
-## Development process
+Build TravelChain:
+git submodule update --init --recursive
+cmake .
+make
+For Ubuntu
 
-- Milestones are numbered YYMMDD and refer to the **anticipated release date**.
-- Bugs are always worked before enhancements
-- Developers should work each issue according to a numbered branch corresponding to the issue `git checkout -b 123`
-- We pay **bounties** for issues that have been estimated. An estimated issue is prefixed with a number in brackets like this: `[2] An nasty bug`. In this example, the bug is valued at two hours ($125 per hour). If you fix this issue according to these guidelines and your PR is accepted, this will earn you $250 bitUSD. You must have a Bitshares wallet and a Bitshares account to receive payment.
-- If an issue is already claimed (assigned), do not attempt to claim it. Issues claimed by outside developers will indicate an assignment to wmbutler, but will mention the developer's github account in this the comments.
-- To claim an issue, simply leave a comment with your request to claim.
-- Do not claim an issue if you will be unable to complete it by the date indicated on the Milestone name. Milestone 170901 will be pushed on September 1, 2017.
+Ubuntu 14.04 LTS Build and Install Instructions
+The following dependencies were necessary for a clean install of Ubuntu 14.04 LTS:
+sudo apt-get update
+sudo apt-get install cmake make libbz2-dev libdb++-dev libdb-dev libssl-dev openssl libreadline-dev autoconf libtool git ntp libcurl4-openssl-dev g++
 
-## 开发流程
 
-- 开发目标上标记的日期，是预计发表时间
-- 修补漏洞优先于项目改进
-- 开发者需要根据一个被标好数字（这个数字对应一个问题`git checkout -b 123`）的分叉（branch），对每个问题进行开发。
-- 我们对已经被预算好的问题进行**悬赏**。一个被预算好的问题会被标记上前缀，像这样`[2] An nasty bug`。在这一例子中，这个问题被视作价值两个小时的工作时间（125美刀一小时）。如果你能通过这些指南修改这一问题，并且你的修改要求（Pull Request）被接受，你便会得到250 bitUSD。你必须拥有一个比特股钱包和比特股账号用来接收这一支付。
-- 如果问题已经被认领（指派），不要尝试认领它。外部开发者认领问题意味着 wmbutler的指派，但是我会在评论里提及这一开发者的github账户。
-- 简单地留下一条你要求认领的评论（comment），便能认领问题。
-- 不要认领一个在开发目标上所写规定时间内完成不了的问题。列如 开发目标170901 需要在2017年9月1日前被推进完成.
+Build Boost 1.57.0
+The Boost which ships with Ubuntu 14.04 is too old. You need to download the Boost tarball for Boost 1.57.0 (Note, 1.58.0 requires C++14 and will not build on Ubuntu 14.04 LTS; this requirement was an accident, see this mailing list post).
+BOOST_ROOT=$HOME/opt/boost_1_57_0
+sudo apt-get update
+sudo apt-get install autotools-dev build-essential libbz2-dev libicu-dev python-dev
+wget -c 'http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.bz2/download' -O boost_1_57_0.tar.bz2
+[ $( sha256sum boost_1_57_0.tar.bz2 | cut -d ' ' -f 1 ) == "910c8c022a33ccec7f088bd65d4f14b466588dda94ba2124e78b8c57db264967" ] || ( echo 'Corrupt download' ; exit 1 )
+tar xjf boost_1_57_0.tar.bz2
+cd boost_1_57_0/
+./bootstrap.sh "--prefix=$BOOST_ROOT"
+./b2 install
 
-## Coding style guideline
 
-Our style guideline is based on 'Airbnb JavaScript Style Guide' (https://github.com/airbnb/javascript), with few exceptions:
+Build Travelchain Core
+cd ..
+git clone https://github.com/travelchain/travelchain-core.git
+cd travelchain-core
+git submodule update --init --recursive
+cmake -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Release .
+make
 
-- Strings are double quoted
-- Additional trailing comma (in arrays and objects declaration) is optional
-- 4 spaces tabs
-- Spaces inside curly braces are optional
 
-We strongly encourage to use _eslint_ to make sure the code adhere to our style guidelines.
+Ubuntu 16.04 LTS
+Ubuntu 16.04 LTS ships with Boost 1.58 libraries, so no need to build from source.
+sudo apt-get install libboost-all-dev
 
-## 代码风格
-我们的代码指南基于[Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript),不过有一些例外：
 
- - 字符串需要被双引
- - 额外的尾随逗号（在定义数组和对象时）是随意的
- - 四个空格的缩进
- - 在花括号里的空格是随意的
+Other steps are same to 14.04 LTS.
 
-我们强烈鼓励用  _eslint_ 确保代码依附于我们的代码风格指南
+Windows - Visual Studio 2013
+
+Prerequisites
+Microsoft Visual C++ 2013 Update 1 (the free Express edition will work)
+If you have multiple MSVS installation use MSVS Developer console from target version.
+This build is for 64bit binaries.
+Set up the directory structure
+Create a base directory for all projects. I'm putting everything in D:\travelchain, you can use whatever you like. In several of the batch files and makefiles, this directory will be referred to as GRA_ROOT:
+mkdir D:\travelchain
+
+
+Clone the TravelChain Core repository
+D:
+cd D:\travelchain
+git clone https://github.com/travelchain/travelchain-core.git
+cd travelchain-core
+git submodule update --init --recursive
+
+
+Download CMake
+Download the latest Win32 Zip build CMake fromhttp://cmake.org/cmake/resources/software.html (version 2.8.12.2 as of this writing). Unzip it to your base directory, which will create a directory that looks something like D:\travelchain\cmake-2.8.12.2-win32-x86. Rename this directory to D:\travelchain\CMake.
+If you already have CMake installed elsewhere on your system you can use it, but TravelChain Core has a few batch files that expect it to be in the base directory's CMake subdirectory, so those scripts would need tweaking.
+Boost
+TravelChain Core depends on the Boost libraries version 1.57 ~ 1.60. You can build them from source.
+download boost source from http://www.boost.org/users/download/
+unzip it to the base directory D:\travelchain.
+This will create a directory like D:\travelchain\boost_1_57_0.
+OpenSSL
+TravelChain Core depends on OpenSSL version 1.0.1 or 1.0.2, and you must build this from source.
+download OpenSSL source from http://www.openssl.org/source/
+Untar it to the base directory D:\travelchain
+this will create a directory like D:\travelchain\openssl-1.0.1g.
+At the end of this, your base directory should look like this (directory names will be slightly different for the 64bit versions):
+D:\travelchain
++- travelchain-core
++- boost_1_57_0
++- CMake
++- openssl-1.0.1g
+
+
+Build the library dependencies
+Set up environment for building:
+D:
+cd D:\travelchain
+notepad setenv_x64.bat
+
+
+Put this into the notepad window, then save and quit.
+@echo off
+set GRA_ROOT=d:\travelchain
+set OPENSSL_ROOT=%GRA_ROOT%\openssl-1.0.1g
+set OPENSSL_ROOT_DIR=%OPENSSL_ROOT%
+set OPENSSL_INCLUDE_DIR=%OPENSSL_ROOT%\include
+set BOOST_ROOT=%GRA_ROOT%\boost_1_57_0
+
+set PATH=%GRA_ROOT%\CMake\bin;%BOOST_ROOT%\lib;%PATH%
+
+echo Setting up VS2013 environment...
+call "%VS120COMNTOOLS%\..\..\VC\vcvarsall.bat" x86_amd64
+
+
+Then run
+setenv_x64.bat
+
+
+Build OpenSSL DLLs
+D:
+cd D:\travelchain\openssl-1.0.1g
+perl Configure VC-WIN64A --prefix=D:\travelchain\OpenSSL
+ms\do_win64a
+nmake -f ms\ntdll.mak
+nmake -f ms\ntdll.mak install
+
+
+This will create the directory D:\travelchain\OpenSSL with the libraries, DLLs, and header files.
+Build Boost
+D:
+cd D:\travelchain\boost_1_57_0
+bootstrap
+.\b2
+
+
+Build project files for TravelChain Core
+Run CMake:
+D:
+cd D:\travelchain\travelchain-core
+notepad run_cmake_x64.bat
+
+
+Put this into the notepad window, then save and quit.
+setlocal
+call "d:\travelchain\setenv_x64.bat"
+cd %GRA_ROOT%
+cmake-gui -G "Visual Studio 12"
+
+
+Then run
+run_cmake_x64.bat
+
+
+This pops up the cmake gui, but if you've used CMake before it will probably be showing the wrong data, so fix that:
+Where is the source code: D:\travelchain\travelchain-core
+Where to build the binaries: D:\travelchain\x64
+Then hit Configure. It may ask you to specify a generator for this project; if it does, choose Visual Studio 12 2013 Win64 for 64 bit builds and select Use default native compilers. Look through the output and fix any errors. Then hit Generate.
+Launch Visual Studio and load D:\travelchain\x64\travelchain.sln
+Set Active Configuration to RelWithDebInfo, ensure Active Solution platform is x64 for 64 bit builds
+Build Solution
+Or you can build the INSTALL target in Visual Studio which will copy all of the necessary files into your D:\travelchain\install directory, then copy all of those files to the bin directory.
+
+How To become an active witness in TravelChain
+
+Set in the config default seed-nodes.txt, then will start the synchronization with the working network
+
+get_account <my name>
+config: witness-id = "1.6.10"
+private-key = ["GPH7vQ7GmRSJfDHxKdBmWMeDMFENpmHWKn99J457BNApiX1T5TNM8","5JGi7DM7J8fSTizZ4D9roNgd8dUc5pirUe9taxYCUUsnvQ4zCaQ"]
+
+To become a witness and be able to produce blocks, you first need to create a witness object that can be voted in.
+We create a new witness object by issuing::
+
+
+>>> create_witness "http://" true { "ref_block_num": 139, "ref_block_prefix": 3692461913, "relative_expiration": 3, "operations": [[ 21,{ "fee": { "amount": 0, "asset_id": "1.3.0" }, "witness_account": "1.2.16", "url": "url-to-proposal", "block_signing_key": "", "initial_secret": "00000000000000000000000000000000000000000000000000000000" } ] ], "signatures": [ ˓→"1f2ad5597af2ac4bf7a50f1eef2db49c9c0f7616718776624c2c09a2dd72a0c53a26e8c2bc928f783624c4632924330fc03f08345c8f40b9790efa2e4157184a37 ˓→" ] }
+
+
+Our witness is registered, but it can’t produce blocks because nobody has voted it in. You can see the current list of active witnesses with get_global_properties:: >>> get_global_properties { "active_witnesses": [ "1.6.0", "1.6.1", "1.6.2", "1.6.3", "1.6.4", "1.6.5", "1.6.7", "1.6.8", "1.6.9" ], ... Now, we should vote our witness in. Vote all of the shares your account in favor of your new witness.: >>> vote_for_witness true true [a transaction in json format]
+
+
+Note: If you want to experiment with things that require voting, be aware that votes are only tallied once per day at the maintenance interval. get_dynamic_global_properties tells us when that will be in next_maintenance_time. Once the next maintenance interval passes, run get_global_properties again and you should see that your new witness has been voted in. Now we wait until the next maintenance interval.
+
+
+Graphene CLI Wallet Cookbook
+
+Running a Local Test Network
+Right now, there is no public testnet, so the only way to test is to run your own private network. To do this, launch a witness node to generate blocks. In the directory where you built your graphene distribution:
+cd programs/witness_node
+# if you have previously run a witness node, you may need to remove the old blockchain.
+# at this early stage, new commits often make it impossible to reuse an old database
+#   rm -r witness_node_data_dir
+./witness_node --rpc-endpoint "127.0.0.1:8090" --enable-stale-production -w \""1.6.0"\" \""1.6.1"\" \""1.6.2"\" \""1.6.3"\" \""1.6.4"\"
+
+
+The initial genesis state has ten pre-configured delegates (1.6.0-9) that all use the same private key to sign their blocks, and the witness node has the private keys for these initial delegates built in.. Launching witness_node this way allows you to act as all ten delegates.
+Now, in a second window, launch a cli_wallet process to interact with the network.
+cd programs/cli_wallet
+# similarly, if you have previously run a wallet, you may need to wipe out your
+# old wallet
+#    rm wallet.json
+./cli_wallet
+
+
+Before doing anything with the new wallet, set a password and unlock the wallet.
+Warning: your passwords will be displayed on the screen.
+new >>> set_password my_password
+locked >>> unlock my_password
+unlocked >>>
+
+Support
+Technical support is available in the Telegram Chain.
+TravelChain Core bugs can be reported directly to the issue tracker.
+TravelChain UI bugs should be reported to the UI issue tracker
+
+API
+You can restrict API's to particular users by specifying an api-access file in config.ini or by using the --api-access /full/path/to/api-access.json startup node command. Here is an example api-access file which allows user bytemasterwith password supersecret to access four different API's, while allowing any other user to access the three public API's necessary to use the wallet:
+{
+   "permission_map" :
+   [
+      [
+         "bytemaster",
+         {
+            "password_hash_b64" : "9e9GF7ooXVb9k4BoSfNIPTelXeGOZ5DrgOYMj94elaY=",
+            "password_salt_b64" : "INDdM6iCi/8=",
+            "allowed_apis" : ["database_api", "network_broadcast_api", "history_api", "network_node_api"]
+         }
+      ],
+      [
+         "*",
+         {
+            "password_hash_b64" : "*",
+            "password_salt_b64" : "*",
+            "allowed_apis" : ["database_api", "network_broadcast_api", "history_api"]
+         }
+      ]
+   ]
+}
+
+
+Passwords are stored in base64 as salted sha256 hashes. A simple Python script, saltpass.py is avaliable to obtain hash and salt values from a password. A single asterisk "*" may be specified as username or password hash to accept any value.
+With the above configuration, here is an example of how to call add_node from the network_node API:
+{"id":1, "method":"call", "params":[1,"login",["bytemaster", "supersecret"]]}
+{"id":2, "method":"call", "params":[1,"network_node",[]]}
+{"id":3, "method":"call", "params":[2,"add_node",["127.0.0.1:9090"]]}
+
+
+Note, the call to network_node is necessary to obtain the correct API identifier for the network API. It is not guaranteed that the network API identifier will always be 2.
+Since the network_node API requires login, it is only accessible over the websocket RPC. Our doxygen documentation contains the most up-to-date information about API's for the witness node and the wallet. If you want information which is not available from an API, it might be available from the database; it is fairly simple to write API methods to expose database methods.
+License
+TravelChain Core is under the MIT license. See LICENSE for more information.
+
+
+

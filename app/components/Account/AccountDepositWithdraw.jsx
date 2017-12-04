@@ -20,8 +20,8 @@ import RuDexGateway from "../DepositWithdraw/rudex/RuDexGateway";
 import GatewayStore from "stores/GatewayStore";
 import GatewayActions from "actions/GatewayActions";
 import AccountImage from "../Account/AccountImage";
-import ls from "common/localStorage";
 import axios from 'axios'
+import ls from "common/localStorage";
 
 const STORAGE_KEY = "__graphene__";
 let ss = new ls(STORAGE_KEY);
