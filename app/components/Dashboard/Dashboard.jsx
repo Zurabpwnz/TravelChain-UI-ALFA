@@ -20,7 +20,7 @@ class Dashboard extends React.Component {
                 ["DACOM.USD", "TT"]
 
             ],
-            "4018d784":[
+            "5cfd61a0":[
                 ["USD", "BTS"],
                 ["USD", "OPEN.BTC"],
                 ["USD", "OPEN.USDT"],
@@ -75,7 +75,7 @@ class Dashboard extends React.Component {
         this.state = {
             width: null,
             showIgnored: false,
-            featuredMarkets: marketsByChain[chainID] || marketsByChain["b96dabd2"],
+            featuredMarkets: marketsByChain[chainID] || marketsByChain["5cfd61a0"],
             newAssets: [
 
             ],
