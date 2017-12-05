@@ -196,11 +196,7 @@ class Dashboard extends React.Component {
             <div ref="wrapper" className="grid-block page-layout vertical">
                 <div ref="container" className="grid-container" style={{padding: "25px 10px 0 10px"}}>
 
-                    <div className="grid-block small-up-1 medium-up-3 large-up-4 no-overflow">
-                        <div className="grid-block no-overflow fm-container" style={fillQuestionnaireBoxStyles}>
-                          
-                        </div>
-                    </div>
+                   
                     <div className="block-content-header" style={{marginBottom: 15}}>
                     <Translate content="exchange.featured"/>
                     </div>
