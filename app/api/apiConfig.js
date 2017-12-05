@@ -21,7 +21,7 @@ export const settingsAPIs = {
     WS_NODE_LIST: [
         {url: "wss://testnet.travelchain.io/ws", location: "Public Testnet Server"},
     ],
-    DEFAULT_FAUCET: "https://testnet.travelchain.io/faucet",
-    TESTNET_FAUCET: "https://testnet.travelchain.io/faucet",
+    DEFAULT_FAUCET: "https://travelchain.io/api/faucet/",
+    TESTNET_FAUCET: "https://testnet.travelchain.io/api/faucet/",
     RPC_URL: "https://openledger.info/api/"
 };

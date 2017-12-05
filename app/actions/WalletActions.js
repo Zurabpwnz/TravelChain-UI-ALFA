@@ -72,24 +72,31 @@ class WalletActions {
                     faucetAddress = faucetAddress.replace(/http:\/\//, "https://");
                 }
 
-                let create_account_promise = fetch( faucetAddress + "/api/v1/accounts", {
+                let body = {
+                    "account": account_name,
+                    "owner_key": owner_private.toPublicKey().toPublicKeyString(),
+                    "active_key": active_private.toPublicKey().toPublicKeyString(),
+                    "memo_key": active_private.toPublicKey().toPublicKeyString(),
+                    //"memo_key": memo_private.private_key.toPublicKey().toPublicKeyString(),
+                }
+
+                // TODO Зарефакторить
+                if (refcode) {
+                  body.refcode = refcode;
+                }
+
+                if (referrer) {
+                  body.referrer = referrer;
+                }
+
+                let create_account_promise = fetch( faucetAddress, {
                     method: "post",
                     mode: "cors",
                     headers: {
                         "Accept": "application/json",
                         "Content-type": "application/json"
                     },
-                    body: JSON.stringify({
-                        "account": {
-                            "name": account_name,
-                            "owner_key": owner_private.toPublicKey().toPublicKeyString(),
-                            "active_key": active_private.toPublicKey().toPublicKeyString(),
-                            "memo_key": active_private.toPublicKey().toPublicKeyString(),
-                            //"memo_key": memo_private.private_key.toPublicKey().toPublicKeyString(),
-                            "refcode": refcode,
-                            "referrer": referrer
-                        }
-                    })
+                    body: JSON.stringify(body)
                 }).then(r => r.json().then(res => {
                     if (!res || (res && res.error)) {
                         reject(res.error);
@@ -154,7 +161,7 @@ class WalletActions {
                 faucetAddress = faucetAddress.replace(/http:\/\//, "https://");
             }
 
-            let create_account_promise = fetch( faucetAddress + "/api/v1/accounts", {
+            let create_account_promise = fetch( faucetAddress, {
                 method: "post",
                 mode: "cors",
                 headers: {
@@ -162,15 +169,13 @@ class WalletActions {
                     "Content-type": "application/json"
                 },
                 body: JSON.stringify({
-                    "account": {
-                        "name": account_name,
-                        "owner_key": owner_private.private_key.toPublicKey().toPublicKeyString(),
-                        "active_key": active_private.private_key.toPublicKey().toPublicKeyString(),
-                        "memo_key": active_private.private_key.toPublicKey().toPublicKeyString(),
-                        //"memo_key": memo_private.private_key.toPublicKey().toPublicKeyString(),
-                        "refcode": refcode,
-                        "referrer": referrer
-                    }
+                    "account": account_name,
+                    "owner_key": owner_private.private_key.toPublicKey().toPublicKeyString(),
+                    "active_key": active_private.private_key.toPublicKey().toPublicKeyString(),
+                    "memo_key": active_private.private_key.toPublicKey().toPublicKeyString(),
+                    //"memo_key": memo_private.private_key.toPublicKey().toPublicKeyString(),
+                    "refcode": refcode,
+                    "referrer": referrer
                 })
             }).then(r => r.json());
 
