@@ -24,7 +24,8 @@ class Kyc extends React.Component {
             email: "",
             phone: "",
             address: "",
-            activity: ""
+            activity: "",
+            isAgreedTerms: false
         };
 
     };
@@ -38,7 +39,8 @@ class Kyc extends React.Component {
             email: "",
             phone: "",
             address: "",
-            activity: ""
+            activity: "",
+            isAgreedTerms: false
         });
     }
 
@@ -72,12 +74,12 @@ class Kyc extends React.Component {
         this.setState({[e.target.id]: e.target.value});
     }
 
-
     render() {
-        // let {error, first_name, surname, country, birthday, email_telephone, address, activity} = this.state;
 
-        let isSendNotValid = false;
-        // let isAgree = false;
+
+        let {first_name, surname, country, birthday, email, phone, address, activity, isAgreedTerms} = this.state;
+
+        const isSendNotValid = !first_name || !surname || !country || !birthday || !email || !phone || !address || !activity || !isAgreedTerms;
 
         return (
             <div className="grid-block vertical">
@@ -141,7 +143,13 @@ class Kyc extends React.Component {
                         <input type="text" style={{marginBottom: 0}}  id="activity" onChange={this.onKYCformInputChanged.bind(this)} />
                     </div>
 
-                    {/*<input type="checkbox" ref={'isAgree'}/>*/}
+
+                    <div className="confirm-checks">
+                        <label>
+                            <input id='terms_agreement_checkbox' type="checkbox" onChange={(e) => this.setState({isAgreedTerms: e.target.value})}/>
+                            <span>I agree to the processing of personal data</span>
+                        </label>
+                    </div>
 
                     <button className={classnames("button float-right no-margin", {disabled: isSendNotValid})} type="submit" value="Submit">
                         <Translate component="span" content="transfer.send" />
