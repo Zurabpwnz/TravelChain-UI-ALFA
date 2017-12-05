@@ -198,7 +198,7 @@ class Dashboard extends React.Component {
 
                     <div className="grid-block small-up-1 medium-up-3 large-up-4 no-overflow">
                         <div className="grid-block no-overflow fm-container" style={fillQuestionnaireBoxStyles}>
-                            <p style={{marginBottom: 0}}>Заполнить Анкету</p>
+                          
                         </div>
                     </div>
                     <div className="block-content-header" style={{marginBottom: 15}}>
