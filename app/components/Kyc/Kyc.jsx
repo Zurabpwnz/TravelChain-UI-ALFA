@@ -18,12 +18,13 @@ class Kyc extends React.Component {
     static getInitialState() {
         return {
             first_name: "",
-            last_name: "",
+            surname: "",
             country: "",
             birthday: "",
-            contact_email_telephone: "",
+            email: "",
+            phone: "",
             address: "",
-            kind_of_activity: ""
+            activity: ""
         };
 
     };
@@ -31,13 +32,24 @@ class Kyc extends React.Component {
     resetForm() {
         this.setState({
             first_name: "",
-            last_name: "",
+            surname: "",
             country: "",
             birthday: "",
-            contact_email_telephone: "",
+            email: "",
+            phone: "",
             address: "",
-            kind_of_activity: ""
+            activity: ""
         });
+    }
+
+
+    componentWillMount () {
+      // axios.get("https://testnet.travelchain.io/api/accounts/me/", {
+      //   headers: {
+      //     Authorization: `JWT ${ss.get("backend_token")}`
+      //   }
+      // }).then((response) => response.data.is_verified ? this.props.router.push("/dashboard") : false)
+      //   .catch(() => this.props.router.push("/dashboard"));
     }
 
     onSubmit(e) {
@@ -62,9 +74,10 @@ class Kyc extends React.Component {
 
 
     render() {
-        // let {error, first_name, last_name, country, birthday, contact_email_telephone, address, kind_of_activity} = this.state;
+        // let {error, first_name, surname, country, birthday, email_telephone, address, activity} = this.state;
 
         let isSendNotValid = false;
+        // let isAgree = false;
 
         return (
             <div className="grid-block vertical">
@@ -88,8 +101,8 @@ class Kyc extends React.Component {
 
                   {/*  First name  */}
                     <div className="content-block transfer-input">
-                        <Translate className="left-label tooltip" component="label" content="kyc.last_name" data-place="top"/>
-                        <input type="text" style={{marginBottom: 0}} id="last_name" onChange={this.onKYCformInputChanged.bind(this)} />
+                        <Translate className="left-label tooltip" component="label" content="kyc.surname" data-place="top"/>
+                        <input type="text" style={{marginBottom: 0}} id="surname" onChange={this.onKYCformInputChanged.bind(this)} />
                     </div>
 
                   {/* Country */}
@@ -104,10 +117,16 @@ class Kyc extends React.Component {
                         <input type="date" style={{marginBottom: 0}}  id="birthday" onChange={this.onKYCformInputChanged.bind(this)} />
                     </div>
 
-                  {/* Contact email/phone */}
+                  {/* Contact email */}
                     <div className="content-block transfer-input">
-                        <Translate className="left-label tooltip" component="label" content="kyc.contact_email_telephone" data-place="top"/>
-                        <input type="text" style={{marginBottom: 0}}  id="contact_email_telephone" onChange={this.onKYCformInputChanged.bind(this)} />
+                        <Translate className="left-label tooltip" component="label" content="kyc.email" data-place="top"/>
+                        <input type="email" style={{marginBottom: 0}}  id="email" onChange={this.onKYCformInputChanged.bind(this)} />
+                    </div>
+
+                  {/* Contact phone */}
+                    <div className="content-block transfer-input">
+                        <Translate className="left-label tooltip" component="label" content="kyc.phone" data-place="top"/>
+                        <input type="text" style={{marginBottom: 0}}  id="phone" onChange={this.onKYCformInputChanged.bind(this)} />
                     </div>
 
                   {/* Address */}
@@ -118,9 +137,11 @@ class Kyc extends React.Component {
 
                   {/* Kind of activity */}
                     <div className="content-block transfer-input">
-                        <Translate className="left-label tooltip" component="label" content="kyc.kind_of_activity" data-place="top"/>
-                        <input type="text" style={{marginBottom: 0}}  id="kind_of_activity" onChange={this.onKYCformInputChanged.bind(this)} />
+                        <Translate className="left-label tooltip" component="label" content="kyc.activity" data-place="top"/>
+                        <input type="text" style={{marginBottom: 0}}  id="activity" onChange={this.onKYCformInputChanged.bind(this)} />
                     </div>
+
+                    {/*<input type="checkbox" ref={'isAgree'}/>*/}
 
                     <button className={classnames("button float-right no-margin", {disabled: isSendNotValid})} type="submit" value="Submit">
                         <Translate component="span" content="transfer.send" />

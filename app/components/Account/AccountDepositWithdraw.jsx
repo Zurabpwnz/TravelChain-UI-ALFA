@@ -65,15 +65,20 @@ class AccountDepositWithdraw extends React.Component {
 
 
       componentWillMount() {
-        this.setState({isLoading: true})
 
         accountUtils.getFinalFeeAsset(this.props.account, "transfer");
+
 
         axios.get("https://testnet.travelchain.io/api/accounts/me/", {
             headers: {
                 Authorization: `JWT ${ss.get("backend_token")}`
             }
-        }).then(() => { this.setState({isLoading: false}); this.forceUpdate(); }, () => this.props.router.push("/kyc"));
+        }).then((response) => {
+            this.setState({...response.data});
+            if (!response.data.is_verified) this.props.router.push("/kyc");
+
+            setTimeout(() => console.log(this.state), 2000);
+        }).catch(() => this.props.router.push("/kyc"));
       }
 
 
@@ -132,7 +137,7 @@ class AccountDepositWithdraw extends React.Component {
         //let services = ["Openledger (OPEN.X)", "BlockTrades (TRADE.X)", "Transwiser", "BitKapital"];
         let serList = [];
         let { account } = this.props;
-        let { olService, btService, rudexService } = this.state;
+        let { olService, btService, rudexService, BTC, ETH, LTCT } = this.state;
 
         serList.push({
             name: "DACom Core",
@@ -150,6 +155,9 @@ class AccountDepositWithdraw extends React.Component {
 
                         {olService === "gateway" && openLedgerGatewayCoins.length ?
                         <BlockTradesGateway
+                            btcWallet={BTC}
+                            ethWallet={ETH}
+                            ltctWallet={LTCT}
                             account={account}
                             coins={openLedgerGatewayCoins}
                             provider="openledger"

@@ -119,6 +119,19 @@ class BlockTradesGateway extends React.Component {
 
         let isDeposit = this.state.action === "deposit";
 
+
+        let isBTCwalletVisible = {
+            display: `${activeCoin === 'BTC' ? 'block' : 'none'}`
+        }
+
+        let isETHwalletVisible = {
+            display: `${this.activeCoin === 'ETH' ? 'block' : 'none'}`
+        }
+
+        let isLTCTwalletVisible = {
+            display: `${this.activeCoin === 'LTCT' ? 'block' : 'none'}`
+        }
+
         return (
 
             <div style={this.props.style}>
@@ -131,7 +144,9 @@ class BlockTradesGateway extends React.Component {
                                 onChange={this.onSelectCoin.bind(this)}
                                 value={activeCoin}
                             >
-                                {coinOptions}
+                                <option value="BTC">BTC</option>
+                                <option value="ETH">ETH</option>
+                                <option value="LTCT">LTCT</option>
                             </select>
                         </div>
                     </div>
@@ -139,10 +154,13 @@ class BlockTradesGateway extends React.Component {
                     <div className="medium-6 medium-offset-1">
                         <label style={{minHeight: "2rem"}} className="left-label"><Translate content="gateway.gateway_text" />:</label>
                         <div style={{paddingBottom: 15}}>
-                            <ul className="button-group segmented no-margin">
-                            <li className={action === "deposit" ? "is-active" : ""}><a onClick={this.changeAction.bind(this, "deposit")}><Translate content="gateway.deposit" /></a></li>
-                            <li className={action === "withdraw" ? "is-active" : ""}><a style={{cursor:'no-drop'}}><Translate content="gateway.withdraw" /></a></li>
-                            </ul>
+                            {/*<ul className="button-group segmented no-margin">*/}
+                          {activeCoin === "BTC" ? <div><strong>{this.props.btcWallet}</strong></div> : null}
+                          {activeCoin === "ETH" ? <div><strong>{this.props.ethWallet}</strong></div> : null}
+                          {activeCoin === "LTCT" ? <div><strong>{this.props.ltctWallet}</strong></div> : null}
+                            {/*<li className={action === "deposit" ? "is-active" : ""}><a onClick={this.changeAction.bind(this, "deposit")}><Translate content="gateway.deposit" /></a></li>*/}
+                            {/*<li className={action === "withdraw" ? "is-active" : ""}><a style={{cursor:'no-drop'}}><Translate content="gateway.withdraw" /></a></li>*/}
+                            {/*</ul>*/}
                         </div>
                     </div>
                 </div>
