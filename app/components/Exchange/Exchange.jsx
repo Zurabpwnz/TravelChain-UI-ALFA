@@ -140,7 +140,7 @@ class Exchange extends React.Component {
     }
 
     componentWillMount() {
-        if (Apis.instance().chain_id.substr(0, 8)=== "5cfd61a0") {
+        if (Apis.instance().chain_id.substr(0, 8)=== "3fcdebf4") {
             GatewayActions.fetchCoins.defer();
             GatewayActions.fetchBridgeCoins.defer();
         }

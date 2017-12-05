@@ -26,7 +26,7 @@ let ss = new ls(STORAGE_KEY);
 ChainConfig.networks.TTT = {
   core_asset: 'TT',
   address_prefix: 'TTT',
-  chain_id: '5cfd61a07cf5026c094676e154f8fa9203c4a4963fa28509e51364581f54c2af'
+  chain_id: '3fcdebf456307ee207e56ca73fecfbcfb8956675bfd14033f4b44be9503b20b7'
 }
 
 

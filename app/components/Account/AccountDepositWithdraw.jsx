@@ -241,7 +241,7 @@ AccountDepositWithdraw = BindToChainState(AccountDepositWithdraw);
 class DepositStoreWrapper extends React.Component {
 
     componentWillMount() {
-        if (Apis.instance().chain_id.substr(0, 8) === "5cfd61a0") { // Only fetch this when on BTS main net
+        if (Apis.instance().chain_id.substr(0, 8) === "3fcdebf4") { // Only fetch this when on BTS main net
             GatewayActions.fetchCoins.defer(); // Openledger
             GatewayActions.fetchCoinsSimple.defer({backer: "RUDEX", url:rudexAPIs.BASE+rudexAPIs.COINS_LIST}); // RuDEX
             GatewayActions.fetchCoins.defer({backer: "TRADE"}); // Blocktrades
